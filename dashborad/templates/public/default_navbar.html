@@ -1,0 +1,44 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">  <!--菜单列表-->
+            <li><a href="/"><i class="fa fa-home fa-fw"></i>控制面板</a></li>
+            <li> <!--用户管理-->
+                <a href="#"><i class="fa fa-user fa-fw" ></i>用户管理<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level  collapse">
+                    <li>
+                        <a href="/user/userlist/" class="menu-link" id="menu-userlist">用户列表</a>
+                    </li>
+                </ul>
+            </li> <!--用户管理 end-->
+
+            <li class=""><!--资产平台-->
+                <a href="#" ><i class="fa fa-database fa-fw"></i>资源管理<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" >
+                    <li class="">
+                        <a href="/server/list/" class="menu-link" id="menu-server-manage">服务器管理</a>
+                    </li>
+                    <li>
+                        <a href="/product/manage/" class="menu-link" id="menu-product-manage">业务线管理</a>
+                    </li>
+                </ul>
+            </li> <!--CMDB资产平台结束-->
+
+            <li><!--代码管理-->
+                <a href="#" ><i class="fa fa-file-code-o fa-fw"></i>监控配置<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" >
+                    <li>
+                        <a href="/monitor/zabbix/hostrsync/">同步主机到zabbix</a>
+                    </li>
+                    <li>
+                        <a href="/monitor/zabbix/linktemplate/">模板绑定</a>
+                    </li>
+                </ul>
+            </li> <!--代码管理结束-->
+
+
+
+
+        </ul><!--菜单列表结束-->
+
+    </div><!--sidebar-collapse end -->
+</div><!--navbar-static-side 左边菜单结束 -->

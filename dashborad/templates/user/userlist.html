@@ -1,0 +1,67 @@
+{% extends "public/layout.html" %}
+
+{% block body %}
+     <table class="table table-hover">
+         <tr>
+             <th>#</th>
+             <th>用户</th>
+             <th>email</th>
+
+             <th>操作</th>
+         </tr>
+         {% for user in userlist %}
+         <tr>
+             <td>{{ forloop.counter }}</td>
+             <td>{{ user.username }}</td>
+             <td>{{ user.email }}</td>
+             <td>
+                 <div class="btn-group">
+                     <div class = 'btn-group'>
+                         <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id = 'dropdownMenu1'
+                                 data-toggle="dropdown" aria-expanded="false">
+                         修改
+                         <span class="caret"></span>
+                             </button>
+                             <ul class = 'dropdown-menu' role="menu" aria-labelledby="dropdownMenu1">
+                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here </a></li>
+                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+
+                         </ul>
+                     </div>
+                     <button class='btn btn-sm btn-warning  modify_user_status' status = 'true' data='1'> 禁用 </button>
+                 </div>
+             </td>
+              <td>
+                <div class="btn-group">
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
+                            修改
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                    {% if user.is_active %}
+                        <button type="button" class="btn btn-sm btn-warning modify_user_status" status="true" data="{{ user.id }}">禁用</button>
+                    {% else %}
+                        <button type="button" class="btn btn-sm modify_user_status btn-info" status="false" data="{{ user.id }}">开启</button>
+                    {% endif %}
+                </div>
+            </td>
+
+         </tr>
+         {% endfor %}
+</table>
+{% endblock %}
+
+{% block js %}
+    <script>
+        console.log("index view")
+    </script>
+{% endblock %}
