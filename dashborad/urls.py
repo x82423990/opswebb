@@ -10,4 +10,5 @@ urlpatterns = [
     # url(r'^user/userlist/', user.UserListView.as_view()),
     url(r'^user/userlist/', user.LW.as_view()),
     url(r'^user/modify/', user.Modify_status.as_view()),
+    # 一个测试
 ]
