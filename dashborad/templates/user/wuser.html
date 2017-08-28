@@ -7,6 +7,9 @@
         <th>userID</th>
         <th>username</th>
         <th>status</th>
+        <th>phone</th>
+        <th>职位</th>
+        <th>Department</th>
         <th>email</th>
     </tr>
 
@@ -22,6 +25,9 @@
         <span class="glyphicon glyphicon-warning-sign text-warning"></span>禁止
         {% endif %}
     </td>
+    <td>{{  i.phone }}</td>
+    <td>{{  i.title }}</td>
+    <td>{{  i.Department }}</td>
     <td>{{ i.email }}</td>
     <td>
         <div class="btn-group">
@@ -31,7 +37,7 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">部门</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>

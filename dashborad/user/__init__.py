@@ -1,10 +1,10 @@
 # coding:utf8
-
 from django.views.generic import TemplateView, View, ListView
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage
+from dashborad.models import Department, Server
 
 
 class UserListView(TemplateView):
@@ -43,8 +43,8 @@ class LW(ListView):
     model = User
     paginate_by = 8
 
-class Modify_status(View):
 
+class Modify_status(View):
     def post(self, resquest):
         ret = {'status': 0}
         user_id = resquest.POST.get('user_id', None)
@@ -63,3 +63,21 @@ class Modify_status(View):
             ret['errmsg'] = 'User is not exist'
             print ret['errmsg']
         return JsonResponse(ret, safe=True)
+
+
+class ModifyDepartmentView(TemplateView):
+    template_name = 'user/department.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ModifyDepartmentView, self).get_context_data(**kwargs)
+        context['departments'] = Department.objects.all()
+        context['user_obj'] = User.objects.get(pk=self.request.GET.get('user', None))
+        return context
+
+    def get(self, requsete, *args, **kwargs):
+        self.request = requsete
+        return super(ModifyDepartmentView, self).get(self, *args, **kwargs)
+
+    def post(self, request):
+        print request.POST
+        return HttpResponse('')
