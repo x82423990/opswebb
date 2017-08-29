@@ -22,7 +22,7 @@ class Server(models.Model):
 
 class Department(models.Model):
     name = models.CharField(max_length=11, null=True)
-    # objects = models.Manager()  # 引用的时候发现没有这个属性,临时添加的.
+    objects = models.Manager()  # 引用的时候发现没有这个属性,临时添加的.
 
     class Meta:
         db_table = 'department'
@@ -34,6 +34,8 @@ class Profile(models.Model):
     department = models.CharField(max_length=32)
     title = models.CharField(max_length=32)
     department = models.ForeignKey(Department, null=True)
+    objects = models.Manager()  # 引用的时候发现没有这个属性,临时添加的.
+
 
     class Meta:
         db_table = 'user_profile'

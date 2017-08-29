@@ -1,10 +1,10 @@
 # coding:utf8
 from django.views.generic import TemplateView, View, ListView
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse, HttpResponse, Http404
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage
-from dashborad.models import Department, Server
+from dashborad.models import Department, Profile
 
 
 class UserListView(TemplateView):
@@ -41,7 +41,7 @@ class UserListView(TemplateView):
 class LW(ListView):
     template_name = 'user/wuser.html'
     model = User
-    paginate_by = 2
+    paginate_by = 10
 
 
 class Modify_status(View):
@@ -71,10 +71,7 @@ class ModifyDepartmentView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ModifyDepartmentView, self).get_context_data(**kwargs)
         context['departments'] = Department.objects.all()
-        context['user_obj'] = User.objects.get(id=self.request.GET.get('user', None))
-        print (self.request.GET.get('kak', 100))
-        print ('____________')
-        print (self.request.GET.get('user', None))
+        context['user_obj'] = get_object_or_404(User, id=self.request.GET.get('user', None))    # 这个方法好,直接在获取参数的时候判断是否存在
         return context
 
     def get(self, requsete, *args, **kwargs):
@@ -82,5 +79,61 @@ class ModifyDepartmentView(TemplateView):
         return super(ModifyDepartmentView, self).get(self, *args, **kwargs)
 
     def post(self, request):
-        print request.POST
-        return HttpResponse('')
+        user_id = request.POST.get('user', None)
+        dpart_id = request.POST.get('department', None)
+        if not user_id or not dpart_id:
+            raise Http404
+        try:
+            use_obj = User.objects.get(pk=user_id)
+            depart_obj = Department.objects.get(pk=dpart_id)
+        except:
+            raise Http404
+        else:
+            try:
+                use_obj.profile.department = depart_obj
+                use_obj.profile.save()
+            except:
+                # raise Http404
+                p = Profile(user=use_obj, department=depart_obj)
+                p.user.save()
+                p.department.save()
+                p.save()
+                return redirect('/user/userlist/')
+            else:
+                return redirect('/user/userlist/')
+
+
+class ModifyPhoneView(TemplateView):
+    template_name = 'user/mp.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ModifyPhoneView, self).get_context_data(**kwargs)
+        context['user_obj'] = get_object_or_404(User, pk=self.request.GET.get('user', None))
+        return context
+
+    def get(self, request, *args, **kwargs):
+        self.requset = request
+        return super(ModifyPhoneView, self).get(self, *args, **kwargs)
+
+    def post(self, request):
+        user_id = request.POST.get('user', None)
+        phone_num = request.POST.get('pnum', None)
+        if not user_id or not phone_num:
+            raise Http404
+        try:
+            user_obj = User.objects.get(pk=user_id)
+            user_obj.profile.phone = phone_num
+            user_obj.profile.save()
+        except:
+            raise Http404
+        else:
+            return redirect('/user/userlist/')
+
+
+#
+# d2 = Department(name='dev')
+# u2 = User.objects.get(pk=2)
+#
+# p2 = Profile(user=u2, department=d2)
+
+

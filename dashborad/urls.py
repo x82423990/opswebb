@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^user/userlist/', user.LW.as_view()),
     url(r'^user/modify/', user.Modify_status.as_view()),
     url(r'^user/modp/', user.ModifyDepartmentView.as_view()),
+    url(r'^user/mp', user.ModifyPhoneView.as_view()),
 ]

@@ -27,7 +27,7 @@
     </td>
     <td>{{  i.profile.phone }}</td>
     <td>{{  i.profile.title }}</td>
-    <td>{{  i.profile.department.name }}</td>
+    <td>{{  i.profile.department.name|default_if_none:'no department'}}</td>
     <td>{{ i.email }}</td>
     <td>
         <div class="btn-group">
@@ -38,7 +38,7 @@
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">部门</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/mp/?user={{ i.id }}">手机号</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
                 </ul>
