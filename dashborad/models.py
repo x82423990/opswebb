@@ -22,7 +22,7 @@ class Server(models.Model):
 
 class Department(models.Model):
     name = models.CharField(max_length=11, null=True)
-    objects = models.Manager()  # 引用的时候发现没有这个属性,临时添加的.
+    # objects = models.Manager()  # 引用的时候发现没有这个属性,临时添加的.
 
     class Meta:
         db_table = 'department'
@@ -38,8 +38,7 @@ class Profile(models.Model):
     class Meta:
         db_table = 'user_profile'
         default_related_name = 'profile'
-
-
+# 一个一对一的例子
     # user = models.OneToOneField(User) 关联一对一关联
     #
     # user = User.objects.create_user('rock11', 'rock@51@.com', '123')
@@ -70,3 +69,118 @@ class Profile(models.Model):
 
     # 或者 Department.objects.create(name='dev'), 添加一个一个开发部.
 
+
+
+
+    #     from django.db import models
+    #
+    #     class Place(models.Model):
+    #         name = models.CharField(max_length=50)
+    #         address = models.CharField(max_length=80)
+    #
+    #         def __str__(self):  # __unicode__ on Python 2
+    #             return "%s the place" % self.name
+    #
+    #     class Restaurant(models.Model):
+    #         place = models.OneToOneField(Place, primary_key=True)
+    #         serves_hot_dogs = models.BooleanField(default=False)
+    #         serves_pizza = models.BooleanField(default=False)
+    #
+    #         def __str__(self):  # __unicode__ on Python 2
+    #             return "%s the restaurant" % self.place.name
+    #
+    #     class Waiter(models.Model):
+    #         restaurant = models.ForeignKey(Restaurant)
+    #         name = models.CharField(max_length=50)
+    #
+    #         def __str__(self):  # __unicode__ on Python 2
+    #             return "%s the waiter at %s" % (self.name, self.restaurant)
+    #
+    #     以下是可以使用Python
+    #     API执行查询操作的示例。
+    #
+    #     创建几个Places对象：
+    #
+    #     >> > p1 = Place(name='Demon Dogs', address='944 W. Fullerton')
+    #     >> > p1.save()
+    #     >> > p2 = Place(name='Ace Hardware', address='1013 N. Ashland')
+    #     >> > p2.save()
+    #     创建Restaurant对象。将“父”对象的ID作为此对象的ID：
+    #
+    #     >> > r = Restaurant(place=p1, serves_hot_dogs=True, serves_pizza=False)
+    #     >> > r.save()
+    #     从Restaurant对象可以访问它的Place：
+    #
+    #     >> > r.place
+    #     < Place: Demon
+    #     Dogs
+    #     the
+    #     place >
+    #     从Place对象可以访问它的Restaurant(如果存在的话)：
+    #
+    #     >> > p1.restaurant
+    #     < Restaurant: Demon
+    #     Dogs
+    #     the
+    #     restaurant >
+    #     p2没有相关的餐厅：
+    #
+    #     >> > from django.core.exceptions import ObjectDoesNotExist
+    #     >> > try:
+    #         >> > p2.restaurant
+    #     >> > except ObjectDoesNotExist:
+    #     >> > print("There is no restaurant here.")
+    #     There is no
+    #     restaurant
+    #     here.
+    #     您还可以使用hasattr来避免异常捕获的需要：
+    #
+    #     >> > hasattr(p2, 'restaurant')
+    #     False
+    #     使用赋值表示Place。由于place字段是Restaurant表的主键, 所以这里的save()
+    #     操作会创建一个新的Restaurant对象：
+    #
+    #     >> > r.place = p2
+    #     >> > r.save()
+    #     >> > p2.restaurant
+    #     < Restaurant: Ace
+    #     Hardware
+    #     the
+    #     restaurant >
+    #     >> > r.place
+    #     < Place: Ace
+    #     Hardware
+    #     the
+    #     place >
+    #     再次指定Place，这次使用相反的方向进行赋值：
+    #
+    #     >> > p1.restaurant = r
+    #     >> > p1.restaurant
+    #     < Restaurant: Demon
+    #     Dogs
+    #     the
+    #     restaurant >
+    #     请注意，必须先保存对象，然后才能将其分配给一对一关系。例如，使用未保存的Place创建Restaurant会产生ValueError：
+    #
+    #     >> > p3 = Place(name='Demon Dogs', address='944 W. Fullerton')
+    #     >> > Restaurant(place=p3, serves_hot_dogs=True, serves_pizza=False)
+    #     Traceback(most
+    #     recent
+    #     call
+    #     last):
+    #     ...
+    #     ValueError: 'Cannot assign "<Place: Demon Dogs>": "Place" instance isn'
+    #     t
+    #     saved in the
+    #     database.
+    #     '
+    #     >> > p.restaurant = Restaurant(place=p, serves_hot_dogs=True, serves_pizza=False)
+    #     Traceback(most
+    #     recent
+    #     call
+    #     last):
+    #     ...
+    #     ValueError: 'Cannot assign "<Restaurant: Demon Dogs the restaurant>": "Restaurant" instance isn'
+    #     t
+    #     saved in the
+    #     database.

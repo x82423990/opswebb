@@ -41,7 +41,7 @@ class UserListView(TemplateView):
 class LW(ListView):
     template_name = 'user/wuser.html'
     model = User
-    paginate_by = 8
+    paginate_by = 2
 
 
 class Modify_status(View):
@@ -55,7 +55,7 @@ class Modify_status(View):
             if user.is_active:
                 user.is_active = False
             else:
-                user.is_active= True
+                user.is_active = True
             user.save()
         except User.DoesNotExist:
             ret['status'] = 1
@@ -71,7 +71,10 @@ class ModifyDepartmentView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ModifyDepartmentView, self).get_context_data(**kwargs)
         context['departments'] = Department.objects.all()
-        context['user_obj'] = User.objects.get(pk=self.request.GET.get('user', None))
+        context['user_obj'] = User.objects.get(id=self.request.GET.get('user', None))
+        print (self.request.GET.get('kak', 100))
+        print ('____________')
+        print (self.request.GET.get('user', None))
         return context
 
     def get(self, requsete, *args, **kwargs):

@@ -75,19 +75,30 @@ WSGI_APPLICATION = 'opsweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'NAME': 'reboot',
+#         'USER': 'xie',
+#         'PASSWORD': 'Fs9006',
+#         'HOST': '192.168.44.132',
+#         'PORT': 3306
+#         }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': 'reboot',
-        'USER': 'xie',
-        'PASSWORD': 'Fs9006',
-        'HOST': '192.168.44.132',
+        'NAME': '51reboot',
+        'USER': 'woniu',
+        'PASSWORD': '123456',
+        'HOST': '127.0.0.1',
         'PORT': 3306
         }
 }
 
-
+# mysql -uwoniu -p123456
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 

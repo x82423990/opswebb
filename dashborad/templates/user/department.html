@@ -10,13 +10,14 @@
   </div>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">部门</label>
-    <div class="col-sm-3">
-      <select class="form-control">
+    <div class="col-sm-3" name="test", value="ccccccc">
+      <select class="form-control" name="department">
+        <!--写了name 才有返回值-->
           <option value="0">请选择部门</option>
           {% for i in departments %}
             print (i)
             <option value= {{ i.id }}>{{ i.name }}</option>
-          {% endfor %}
+          {% endfor %}ß
       </select>
     </div>
   </div>
@@ -31,6 +32,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
+      <input type="hidden" name="id" value="{{ user_obj.id }}">
       <button type="submit" class="btn btn-default">Sign in</button>
     </div>
   </div>

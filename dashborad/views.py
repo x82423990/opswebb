@@ -33,6 +33,7 @@ class Log_In_Out(View):
                 print ret
             return JsonResponse(ret, safe=True)
 
+
 class LogOut(View):
 
     def get(self, request):
