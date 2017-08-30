@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, QueryDict
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
-
+import logging
 
 # Create your views here.
 
@@ -43,4 +43,7 @@ class LogOut(View):
 
 class IndexView(View):
     def get(self, request):
+        logging.debug('tessdfsdf')
+        logger = logging.getLogger('opsweb')
+        logger.error('index err')
         return render(request, "public/index.html")

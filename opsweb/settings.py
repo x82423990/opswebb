@@ -123,3 +123,54 @@ STATICFILES_DIRS = (
 
 # yemiantiaozhuan moban
 TEMPLATE_JUMP = 'public/jump.html'
+
+LOGGING = {
+    'version': 1,
+    'loggers': {
+        'opsweb': {
+            'level': 'DEBUG',
+            'handlers': ['console_handle', 'file_handlers']
+        },
+        'django': {
+            'level': 'DEBUG',
+            'handlers': ['dj_file_handlers']
+        }
+        # 'django.request': {
+        #     'level': 'DEBUG',
+        #     'handlers': ['dj_re_handlers']
+        # }
+    },
+    'handlers': {
+        'console_handle': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file_handlers': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'ops.log'),
+            'formatter': 'opsweb'
+        },
+        'dj_file_handlers': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'dj.log'),
+            'formatter': 'opsweb'
+        },
+        'dj_re_handlers': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 're.dj.log'),
+            'formatter': 'opsweb'
+        }
+    },
+    'formatters': {
+       'opsweb': {
+           'format': '%(asctime)s - %(pathname)s:%(lineno)d[%(levelname)s] - %(message)s'
+       },
+        'simple': {
+            'format': '%(asctime)s - %(levelname)s - %(message)s'
+        }
+    },
+    'root': {
+        'level': 'DEBUG',
+        'handles': ['console_handle']
+    }
+}

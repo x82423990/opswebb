@@ -5,7 +5,8 @@ from django.http import JsonResponse, HttpResponse, Http404
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage
 from dashborad.models import Department, Profile
-
+from django.conf import settings
+from opsweb.settings import TEMPLATE_JUMP
 
 class UserListView(TemplateView):
     template_name = 'user/wuser.html'
@@ -121,14 +122,18 @@ class ModifyPhoneView(TemplateView):
         if not user_id or not phone_num:
             raise Http404
         try:
+            #   保存模型
             user_obj = User.objects.get(pk=user_id)
             user_obj.profile.phone = phone_num
             user_obj.profile.save()
+            print settings.TEMPLATE_JUMP
+            return render(request, settings.TEMPLATE_JUMP, {"status": 0, "next_url": '/user/userlist/'})
+            # return HttpResponse('ok')
         except:
-            raise Http404
-        else:
-            return redirect('/user/userlist/')
-
+            return HttpResponse('err')
+        # else:
+        #     return redirect('/user/userlist/')
+        #
 
 #
 # d2 = Department(name='dev')
