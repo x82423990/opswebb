@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 from . import user
 
@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^user/modify/', user.Modify_status.as_view()),
     url(r'^user/modp/', user.ModifyDepartmentView.as_view()),
     url(r'^user/mp', user.ModifyPhoneView.as_view()),
+    url(r'^permissions/', include([
+        url(r'^none/$', views.permit),
+    ]))
 ]

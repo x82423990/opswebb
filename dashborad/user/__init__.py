@@ -7,6 +7,9 @@ from django.core.paginator import Paginator, EmptyPage
 from dashborad.models import Department, Profile
 from django.conf import settings
 from opsweb.settings import TEMPLATE_JUMP
+from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
+
 
 class UserListView(TemplateView):
     template_name = 'user/wuser.html'
@@ -75,10 +78,14 @@ class ModifyDepartmentView(TemplateView):
         context['user_obj'] = get_object_or_404(User, id=self.request.GET.get('user', None))    # 这个方法好,直接在获取参数的时候判断是否存在
         return context
 
+    @method_decorator(login_required)
+    @method_decorator(permission_required('dashborad.change_department', login_url=settings.TEMPLATE_403))
     def get(self, requsete, *args, **kwargs):
         self.request = requsete
         return super(ModifyDepartmentView, self).get(self, *args, **kwargs)
 
+    @method_decorator(login_required)
+    @method_decorator(permission_required('dashborad.change_department', login_url=settings.TEMPLATE_403))
     def post(self, request):
         user_id = request.POST.get('user', None)
         dpart_id = request.POST.get('department', None)
@@ -135,7 +142,9 @@ class ModifyPhoneView(TemplateView):
         #     return redirect('/user/userlist/')
         #
 
-#
+# In [36]: user.user_permissions.add(Permission.objects.get(pk=28))
+# In [38]: user.user_permissions.remove(Permission.objects.get(pk=28))
+
 # d2 = Department(name='dev')
 # u2 = User.objects.get(pk=2)
 #

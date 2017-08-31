@@ -18,6 +18,15 @@ class Server(models.Model):
 
     class Meta:
         db_table = 'server'
+        permissions = (
+            ('view_server', 'view servers info'),   # 添加一个权限到数据库中的auth_permission表中
+            # 添加权限
+            #  user.user_permissions.add(权限对象)
+            # 权限对象  Permission.objects.get(pk=28)
+            # 权限列表  Permission.objects.filter(pk=28)
+            # 清空权限 user.user_permissions = []
+            # 检查用户是否拥有权限 has_perm来检查用户使用有权限
+        )
 
 
 class Department(models.Model):

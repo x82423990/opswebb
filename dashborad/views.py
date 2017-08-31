@@ -4,7 +4,10 @@ from django.http import HttpResponse, JsonResponse, QueryDict
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 import logging
-
+from django.contrib.auth.decorators import permission_required, login_required
+from django.utils.decorators import method_decorator
+from django.conf import settings
+logger = logging.getLogger('opsweb')
 # Create your views here.
 
 
@@ -42,8 +45,20 @@ class LogOut(View):
 
 
 class IndexView(View):
+    @method_decorator(login_required)
+    @method_decorator(permission_required('dashborad.view_server', login_url='/permissions/none'))
     def get(self, request):
-        logging.debug('tessdfsdf')
-        logger = logging.getLogger('opsweb')
-        logger.error('index err')
+        # if request.user.has_perm('dashborad.view_server'):
+        #     logger.debug('有权限')
+        # else:
+        #     logger.error('无权限')
+
+
+        # logging.debug('tessdfsdf')
+        # logger = logging.getLogger('opsweb')
+        # logger.error('index err')
         return render(request, "public/index.html")
+
+
+def permit(request):
+    return render(request, "public/pr.html")

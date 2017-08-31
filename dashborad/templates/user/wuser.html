@@ -37,7 +37,9 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    {% if perms.dashborad.change_department %}
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">部门</a></li>
+                    {% endif %}
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/mp/?user={{ i.id }}">手机号</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>

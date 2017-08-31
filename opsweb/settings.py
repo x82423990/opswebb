@@ -123,7 +123,7 @@ STATICFILES_DIRS = (
 
 # yemiantiaozhuan moban
 TEMPLATE_JUMP = 'public/jump.html'
-
+TEMPLATE_403 = '/permissions/none'
 LOGGING = {
     'version': 1,
     'loggers': {
@@ -174,3 +174,5 @@ LOGGING = {
         'handles': ['console_handle']
     }
 }
+
+LOGIN_URL = '/login/'
