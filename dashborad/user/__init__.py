@@ -2,13 +2,14 @@
 from django.views.generic import TemplateView, View, ListView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse, Http404
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.paginator import Paginator, EmptyPage
 from dashborad.models import Department, Profile
 from django.conf import settings
 from opsweb.settings import TEMPLATE_JUMP
 from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.decorators import method_decorator
+from django.core import serializers
 
 
 class UserListView(TemplateView):
@@ -141,6 +142,18 @@ class ModifyPhoneView(TemplateView):
         # else:
         #     return redirect('/user/userlist/')
         #
+
+
+
+
+
+
+
+
+
+
+
+
 
 # In [36]: user.user_permissions.add(Permission.objects.get(pk=28))
 # In [38]: user.user_permissions.remove(Permission.objects.get(pk=28))

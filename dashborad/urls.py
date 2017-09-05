@@ -1,6 +1,7 @@
 from django.conf.urls import url, include
 from . import views
 from . import user
+from dashborad.user import group
 
 urlpatterns = [
     # url(r'^login/', views.login_view),
@@ -14,5 +15,11 @@ urlpatterns = [
     url(r'^user/mp', user.ModifyPhoneView.as_view()),
     url(r'^permissions/', include([
         url(r'^none/$', views.permit),
+    ])),
+    url(r'^group/', include([
+        url(r'list/$', group.GroupListView.as_view()),
+        url(r'^$', group.GroupView.as_view()),
+        url(r'^usergroup/', group.UserGroup.as_view()),
     ]))
+
 ]

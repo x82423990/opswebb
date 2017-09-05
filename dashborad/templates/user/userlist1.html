@@ -1,0 +1,84 @@
+{% extends "public/layout.html" %}
+
+{% block body %}
+<table class="table table-hover">
+    <tr>
+        <caption>
+            <button id ='add_group' class="btn-primary" type="button">添加租</button>
+        </caption>
+        <th>UserGroup</th>
+        <th>Action</th>
+
+    </tr>
+
+{% for i in object_list %}
+<tr>
+    <td>{{ i.name }}</td>
+    <td>
+        <button class="btn btn-primary"></button>
+    </td>
+</tr>
+{% endfor %}
+</table>
+<div class="modal fade" id="create_group" aria-hidden='true'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class='close' data-dismiss="modal">x</button>
+                <h4>添加Group</h4>
+            </div>
+                    <div class="modal-body form-inline">
+                    <div class="form-group">
+                        <label for="exampleInputName2">用户组：</label>
+                        <input type="text" class="form-control" id="form_groupname" placeholder="请输入用户组名称" />
+                    </div>
+                <button class="btn-primary" id="create_group_btn">Submit</button>
+            </div>
+                <div class="modal-footer">
+                    <input class="btn btn-default" data-dismiss="modal" ari-hidden="true" type="button" value="Cancel">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js%}
+<script>
+    $(function () {
+        // 添加用户组
+        $("#add_group").click(function () {
+            var create_group_modal=$('#create_group')
+            create_group_modal.modal('show')
+            // 执行添加用户组
+            $('#create_group_btn').click(function () {
+                var gropu_input = $('#form_groupname');
+                var group_value = gropu_input.val();
+                console.log(group_value)
+                if (group_value == ''){
+                    swal('add filed','username is not null', 'error')
+                    return false
+                }
+                create_group_modal.modal('hide')
+                $.post('', {'name': group_value}, function (res) {
+                    console.log(res)
+                    if (res.status == 0 ){
+                        swal({
+                            'title': 'add success',
+                            'text': '',
+                            'type': 'success',
+                        },function () {
+                            setTimeout(function () {
+                                window.location.reload()
+                            },50);
+                        })
+                    }else{
+                        console.log(res.msg)
+                        swal('操作失败', res.msg, 'error')
+                    }
+                })
+            })
+
+        })
+    })
+</script>
+{% endblock %}

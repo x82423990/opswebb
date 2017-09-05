@@ -6,6 +6,7 @@
         <th>#</th>
         <th>userID</th>
         <th>username</th>
+        <th>userGroup</th>
         <th>status</th>
         <th>phone</th>
         <th>职位</th>
@@ -18,6 +19,11 @@
     <td>{{ forloop.counter }}</td>
     <td>{{ i.id }}</td>
     <td>{{ i.username }}</td>
+    <td>
+        {% for g in i.groups.all %}
+        {{ g.name }}&#12288;
+        {% endfor %}
+    </td>
     <td class="user_status">
         {% if i.is_active %}
         <span class="glyphicon glyphicon-ok-circle text-success"></span>正常
@@ -41,7 +47,8 @@
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">部门</a></li>
                     {% endif %}
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/mp/?user={{ i.id }}">手机号</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data='{"uid": "{{ user.id }}"}' class="user_to_group">Add Group</a></li>
+                        <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#" data='{"uid":"{{ user.id }}"}' class="user_to_group">添加指定组</a></li>-->
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
                 </ul>
             </div>
@@ -55,29 +62,24 @@
 </tr>
 {% endfor %}
 </table>
-<div class="panel-default">
-    <center>
-        <ul class="pagination">
-            <li><a href="/user/userlist/?page=1">首页</a></li>
-            {% if page_obj.has_next %}
-            <li><a href="/user/userlist/?page={{ page_obj.next_page_number}}">next</a></li>
-            {% else %}
-            <li class="disabled"><a href="#">next</a></li>
-
-            {% endif %}
-            {% for p in page_obj.paginator.page_range %}
-                <li {% if page_obj.number == p %} class="active" {% endif %}><a href="/user/userlist/?page={{ p }}">{{ p }}</a></li>
-            {% endfor %}
-            {% if page_obj.has_previous %}
-                <li><a href="/user/userlist/?page={{ page_obj.previous_page_number }}">up</a></li>
-            {% else %}
-                <li class="disabled"><a href="#">up</a></li>
-            {% endif %}
-            <li><a href="/user/userlist/?page={{ page_obj.paginator.num_pages }}">末页</a></li>
-        </ul>
-    </center>
-</div>
-
+    <div class="modal fade" id="user_to_group_modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 id="user_to_group_modal_title"></h4>
+                </div>
+                <div class="modal-body form-inline col-xs-6">
+                    <select class="form-control" id="all_user_group">
+                    </select>
+                    <button class="btn btn-primary" id="user_to_group_btn">提交</button>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-default" data-dismiss="modal" aria-hidden="true" type="button" value="取消">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block js%}
 <script>
@@ -118,6 +120,48 @@
     modify_status(click_obj.attr('data'))
 
     })
+        /*
+        将用户添加指定组
+         */
+        var uid;
+        var user_to_group_modal= $('#user_to_group_modal')
+        var all_user_group = $('#all_user_group')
+        $('.user_to_group').click(function () {
+            user_to_group_modal.modal('show')
+            var data = JSON.parse($(this).attr('data'));
+            uid = data.uid
+            $.get('/group',{ 'uid': uid }, function (res) {
+                var html = '<option value="0">请选择用户</option>'
+                $.each(res, function (n, obj) {
+                    html+= '<option value="'+obj.pk+'">'+obj.fields.name+'</option>>'
+                })
+                all_user_group.html(html)
+            })
+            return false;
+        })
+        // 执行用户添加到用户组
+        $('#user_to_group_btn').click(function () {
+            console.log(all_user_group.val())
+            gid = all_user_group.val()
+            var url = '/group/usergroup/';
+            $.post(url,{'uid': uid, 'gid':gid }, function (res) {
+                console.log(res)
+                if (res.status == 0 ){
+                        swal({
+                            'title': 'add success',
+                            'text': '',
+                            'type': 'success',
+                        },function () {
+                            setTimeout(function () {
+                                window.location.reload()
+                            },50);
+                        })
+                    }else{
+                        console.log(res.msg)
+                        swal('操作失败', res.msg, 'error')
+                    }
+            })
+        })
     })
 </script>
 {% endblock %}
