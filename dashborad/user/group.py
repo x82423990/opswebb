@@ -9,6 +9,7 @@ import logging
 
 logger = logging.getLogger('opsweb')
 
+
 class GroupListView(ListView):
     model = Group
     template_name = 'user/userlist1.html'
@@ -35,11 +36,13 @@ class GroupView(View):
 
     def get(self, request):
         uid = request.GET.get('uid')
+        print uid
         # ret = {'status': 0}
         # try:
         #     Group.objects.all()
         user = User.objects.get(pk=uid)
         groups = [i for i in Group.objects.all() if i not in user.groups.all()]
+        group = Group.objects.all()
         print groups
         return HttpResponse(serializers.serialize('json', groups), content_type='application/json')
 

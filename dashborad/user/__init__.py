@@ -12,35 +12,35 @@ from django.utils.decorators import method_decorator
 from django.core import serializers
 
 
-class UserListView(TemplateView):
-    template_name = 'user/wuser.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(UserListView, self).get_context_data(**kwargs)
-        # context['userlist'] = User.objects.all()
-        userlist = User.objects.all()
-        # 获取所有的用户列表对象
-        paginator = Paginator(userlist, 2)
-        page = self.request.GET.get('page', 1)
-        print page
-        try:
-            page_obj = paginator.page(page)
-        except EmptyPage:
-            page_obj = paginator.page(1)
-        print page_obj.object_list
-        context['page_obj'] = page_obj
-        CountPage = page_obj.paginator.page_range
-        if page_obj.number < 6:
-            CurPage = 6
-        else:
-            CurPage = page_obj.number
-        ppaa = CountPage[CurPage-6:CurPage+4]
-        context['views_page'] = ppaa
-        return context
-
-    def get(self, request, *args, **kwargs):
-        self.request = request
-        return super(UserListView, self).get(request, *args, **kwargs)
+# class UserListView(TemplateView):
+#     template_name = 'user/wuser.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(UserListView, self).get_context_data(**kwargs)
+#         # context['userlist'] = User.objects.all()
+#         userlist = User.objects.all()
+#         # 获取所有的用户列表对象
+#         paginator = Paginator(userlist, 2)
+#         page = self.request.GET.get('page', 1)
+#         print page
+#         try:
+#             page_obj = paginator.page(page)
+#         except EmptyPage:
+#             page_obj = paginator.page(1)
+#         print page_obj.object_list
+#         context['page_obj'] = page_obj
+#         CountPage = page_obj.paginator.page_range
+#         if page_obj.number < 6:
+#             CurPage = 6
+#         else:
+#             CurPage = page_obj.number
+#         ppaa = CountPage[CurPage-6:CurPage+4]
+#         context['views_page'] = ppaa
+#         return context
+#
+#     def get(self, request, *args, **kwargs):
+#         self.request = request
+#         return super(UserListView, self).get(request, *args, **kwargs)
 
 
 class LW(ListView):
@@ -79,14 +79,14 @@ class ModifyDepartmentView(TemplateView):
         context['user_obj'] = get_object_or_404(User, id=self.request.GET.get('user', None))    # 这个方法好,直接在获取参数的时候判断是否存在
         return context
 
-    @method_decorator(login_required)
-    @method_decorator(permission_required('dashborad.change_department', login_url=settings.TEMPLATE_403))
+    # @method_decorator(login_required)
+    # @method_decorator(permission_required('dashborad.change_department', login_url=settings.TEMPLATE_403))
     def get(self, requsete, *args, **kwargs):
         self.request = requsete
         return super(ModifyDepartmentView, self).get(self, *args, **kwargs)
 
-    @method_decorator(login_required)
-    @method_decorator(permission_required('dashborad.change_department', login_url=settings.TEMPLATE_403))
+    # @method_decorator(login_required)
+    # @method_decorator(permission_required('dashborad.change_department', login_url=settings.TEMPLATE_403))
     def post(self, request):
         user_id = request.POST.get('user', None)
         dpart_id = request.POST.get('department', None)

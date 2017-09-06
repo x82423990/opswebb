@@ -10,23 +10,28 @@ class Server(models.Model):
     cpu = models.CharField(max_length=50, null=True)
     mem = models.CharField(max_length=50)
     disk = models.CharField(max_length=50)
-    sn = models.CharField(max_length=60)
-    idc = models.CharField(max_length=50)
-    ipinfo = models.CharField("[{'eth0': '192.168.168.1', 'mac_addr': 'dsfsd'}]", max_length=50)
-    product = models.CharField(max_length=50)
-    remark = models.TextField(default='')
+    status = models.CharField(max_length=2)
+    loads = models.CharField(max_length=20)
 
     class Meta:
         db_table = 'server'
-        permissions = (
-            ('view_server', 'view servers info'),   # 添加一个权限到数据库中的auth_permission表中
-            # 添加权限
-            #  user.user_permissions.add(权限对象)
-            # 权限对象  Permission.objects.get(pk=28)
-            # 权限列表  Permission.objects.filter(pk=28)
-            # 清空权限 user.user_permissions = []
-            # 检查用户是否拥有权限 has_perm来检查用户使用有权限
-        )
+        # permissions = (
+        #     ('view_server', 'view servers info'),   # 添加一个权限到数据库中的auth_permission表中
+        #     # 添加权限
+        #     #  user.user_permissions.add(权限对象)
+        #     # 权限对象  Permission.objects.get(pk=28)
+        #     # 权限列表  Permission.objects.filter(pk=28)
+        #     # 清空权限 user.user_permissions = []
+        #     # 检查用户是否拥有权限 has_perm来检查用户使用有权限
+        # )
+
+
+class IDC(models.Model):
+    name = models.CharField(max_length=32)
+
+    class Meta:
+        db_table = 'idc'
+
 
 
 class Department(models.Model):

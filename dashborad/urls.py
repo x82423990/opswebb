@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from . import views
-from . import user
+from . import user, server
 from dashborad.user import group
 
 urlpatterns = [
@@ -20,6 +20,9 @@ urlpatterns = [
         url(r'list/$', group.GroupListView.as_view()),
         url(r'^$', group.GroupView.as_view()),
         url(r'^usergroup/', group.UserGroup.as_view()),
+    ])),
+    url(r'^server/', include([
+        url(r'^list/$', server.GroupList.as_view()),
+        url(r'add_server', server.AddServer.as_view())
     ]))
-
 ]
