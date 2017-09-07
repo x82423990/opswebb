@@ -14,8 +14,10 @@
 {% for i in object_list %}
 <tr>
     <td>{{ i.name }}</td>
+    <td>{{ i.id }}</td>
+
     <td>
-        <button class="btn btn-primary"></button>
+        <button class="btn btn-primary btn-sm show_a" data='{"gid": "{{ i.id }}", "name": "{{ i.name }}"}'>查看组内成员</button>
     </td>
 </tr>
 {% endfor %}
@@ -40,6 +42,23 @@
         </div>
     </div>
 </div>
+
+    <div class="modal fade" id="modal_show_group_users_list" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4>用户组名: <span id="modal_show_group_users_list_title"></span></h4>
+                </div>
+                <div class="modal-body form-inline" id="modal_show_group_users_content_list">
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-default" data-dismiss="modal" aria-hidden="true" type="button" value="确定">
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 {% block js%}
@@ -77,8 +96,50 @@
                     }
                 })
             })
+        })
+        $('.show_a').click(function () {
+            var gid = JSON.parse($(this).attr('data')).gid
+            var gname = JSON.parse($(this).attr('data')).name
+            console.log(gid)
+            $.get("/group/usergroup/", {"gid": gid},function(res){
+                console.log(res)
+                    var html = '<table class="table table-striped">';
+                        html += '<tr><td>name</td><td>id</td><td>mail</td><td>操作</td></tr>'
+                    $.each(res, function(n, obj){
+                        html += '<tr>';
+                        html += '<td>'+obj.name+'</td>';
+                        html += '<td>'+obj.id+'</td>';
+                        html += '<td>'+obj.email+'</td>';
+                        html += '<td><button class="btn btn-danger btn-xs caonima" udata="'+obj.id+'">删除</button></td>';
+                        html += '</tr>'
+                    });
+                    html += '</table>';
+                console.log(gname)
+                $('#modal_show_group_users_list_title').html(gname)
+                $("#modal_show_group_users_content_list").html(html)
 
+            $('#modal_show_group_users_list').modal('show');
+            $('.caonima').click(function () {
+                console.log('----------')
+                var c_obj = $(this)
+                var u_id = $(this).attr('udata')
+                    $.ajax({
+                        url: "/group/usergroup/",
+                        type: 'delete',
+                        data: {'uid':u_id, 'gid':gid},
+                        datatype: 'json',
+                        success: function (res) {
+                            if (res.status == 0){
+                                c_obj.parents('tr').remove();
+                            }else {
+                                swal('操作失败', res.msg, 'error')
+                            }
+                        }
+                    })
+                })
+            })
         })
     })
+
 </script>
 {% endblock %}

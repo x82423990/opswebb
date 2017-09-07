@@ -3,7 +3,7 @@ from django.utils.decorators import method_decorator
 from  django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import  TemplateView, View, ListView
 from django.contrib.auth.models import Group, User, Permission
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, QueryDict
 from django.core import serializers
 import logging
 
@@ -70,3 +70,31 @@ class UserGroup(View):
 
         user.groups.add(group)
         return JsonResponse(ret, safe=True)
+
+    def get(self, request):
+        gid = request.GET.get('gid', None)
+        try:
+            # groups = Group.objects.get(pk=gid)
+            groups = Group.objects.get(pk=gid)
+            groups = [{'id': i.id, 'name': i.username, 'email': i.email} for i in groups.user_set.all()]
+            print groups
+            return JsonResponse(groups, safe=False)
+            # return JsonResponse([], safe=False)
+        except:
+            return JsonResponse([], safe=False)
+
+    def delete(self, request):
+        ret = {'status':0}
+        res_obj = QueryDict(request.body)
+        uid = res_obj.get('uid')
+        gid = res_obj.get('gid')
+        print uid, gid
+        try:
+            user = User.objects.get(pk=uid)
+            group = Group.objects.get(pk=gid)
+            group.user_set.remove(user)
+        except Exception as e:
+            ret['status'] = 1
+            ret['msg'] = e.args
+        return JsonResponse(ret)
+

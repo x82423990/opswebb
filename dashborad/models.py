@@ -10,7 +10,7 @@ class Server(models.Model):
     cpu = models.CharField(max_length=50, null=True)
     mem = models.CharField(max_length=50)
     disk = models.CharField(max_length=50)
-    status = models.CharField(max_length=2)
+    status = models.IntegerField()
     loads = models.CharField(max_length=20)
 
     class Meta:
@@ -26,12 +26,15 @@ class Server(models.Model):
         # )
 
 
+class test(models.Model):
+    a = models.CharField(max_length=21)
+
+
 class IDC(models.Model):
     name = models.CharField(max_length=32)
 
     class Meta:
         db_table = 'idc'
-
 
 
 class Department(models.Model):

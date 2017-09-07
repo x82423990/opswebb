@@ -20,8 +20,10 @@ class AddServer(View):
         hostname = request.POST.get('hostname')
         ip = request.POST.get('address')
         status = request.POST.get('status')
+        print hostname, ip, status
         try:
-            Server.objects.create(hostname=hostname, ip=ip, status=status)
+            Server.objects.create(hostname=hostname, ip=ip, status=str(status))
         except Exception as e:
             print e
         return HttpResponseRedirect('/server/list')
+        # return HttpResponse(request)
