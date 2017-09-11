@@ -2,8 +2,8 @@
 from django.utils.decorators import method_decorator
 from  django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import  TemplateView, View, ListView
-from django.contrib.auth.models import Group, User, Permission
-from django.http import JsonResponse, HttpResponse, QueryDict
+from django.contrib.auth.models import Group, User, Permission, ContentType
+from django.http import JsonResponse, HttpResponse, QueryDict, HttpResponseRedirect
 from django.core import serializers
 import logging
 
@@ -97,4 +97,39 @@ class UserGroup(View):
             ret['status'] = 1
             ret['msg'] = e.args
         return JsonResponse(ret)
+
+
+class PermissionList(TemplateView):
+    template_name = 'user/group_permission_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PermissionList, self).get_context_data(**kwargs)
+        context['group'] = self.request.GET.get('gid')      # 获取从URL 传过来的参数
+        context['content_type'] = ContentType.objects.all()
+        context['msg'] = 'err'
+        context['group_permissions'] = self.get_group_permissions()
+        # context['group_permissions'] =
+        return context
+
+    def get_group_permissions(self):
+        gid = self.request.GET.get('gid')
+        group = Group.objects.get(pk=gid)
+        return [per.id for per in group.permissions.all()]
+
+    def post(self, requset):
+        gid = requset.POST.get('group')
+        pms_id = requset.POST.getlist('permission')
+        print pms_id
+        # 查询用户组
+        g = Group.objects.get(pk=gid)
+        if pms_id:
+            pms_obj = Permission.objects.filter(id__in=pms_id)
+            g.permissions = pms_obj
+        return HttpResponseRedirect('/group/list/')
+
+
+
+
+
+
 
