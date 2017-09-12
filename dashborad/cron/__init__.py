@@ -1,20 +1,44 @@
 # coding:utf8
 import paramiko, re
 import sys
+from .callback import *
+from .inventory import *
+from .runner import *
+from django.views.generic import TemplateView, ListView, View
+from dashborad.models import Server
+from django.http import HttpResponse, JsonResponse
+from .runner import *
 reload(sys)
 sys.setdefaultencoding('utf-8')
-hostname = '192.168.44.132'
-pat = r'^#'
-# 指定本地的RSA私钥文件,如果建立密钥对时设置的有密码，password为设定的密码，如无不用指定password参数
-pkey = paramiko.RSAKey.from_private_key_file('cao')
-# 建立连接
-ssh = paramiko.SSHClient()
-ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ssh.connect(hostname,
-            port=22,
-            username='xie',
-            pkey=pkey)
-stdin, stdout, stderr = ssh.exec_command('sudo crontab -l')
-for i in stdout.readlines():
-    if not re.match(pat, i):
-        print i
+
+
+class CronManger(ListView):
+    template_name = 'public/data_table.html'
+    model = Server
+    context_object_name = 'ser_obj'
+
+
+class CronView(View):
+    def get(self, request):
+        s_id = request.GET.get('id')
+        obj = Server.objects.get(pk=s_id)
+        res = [{
+            'ip': obj.ip,
+            'name': obj.hostname,
+            'private_key': '/Users/xieyifan/Documents/keys/newjump',
+            'username': 'ubuntu',
+            'port': 22
+        }, ]
+        task = (('shell', 'crontab -l'),)
+        hoc = AdHocRunner(hosts=res)
+        hoc.results_callback = CommandResultCallback()
+        ret = hoc.run(task)
+        try:
+            rets = hoc.run(task)
+            ret = ret.get('contacted').get('10.0.0.93')[0].get('stdout')
+        except Exception as e:
+            print e.args
+        return JsonResponse(ret)
+
+
+
