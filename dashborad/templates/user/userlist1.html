@@ -18,6 +18,7 @@
 
     <td>
         <button class="btn btn-primary btn-sm show_a" data='{"gid": "{{ i.id }}", "name": "{{ i.name }}"}'>查看组内成员</button>
+        <a class="btn btn-danger btn-sm" href="/group/per/?gid={{ i.id }}">修改权限</a>
     </td>
 </tr>
 {% endfor %}

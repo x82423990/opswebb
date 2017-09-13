@@ -20,6 +20,8 @@ urlpatterns = [
         url(r'list/$', group.GroupListView.as_view()),
         url(r'^$', group.GroupView.as_view()),
         url(r'^usergroup/', group.UserGroup.as_view()),
+        url(r'^per/', group.PermissionList.as_view()),
+
     ])),
     url(r'^server/', include([
         url(r'^list/$', server.GroupList.as_view()),
