@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from . import views
 from . import user, server
 from dashborad.user import group
-
+from dashborad import cron
 urlpatterns = [
     # url(r'^login/', views.login_view),
     url(r'^login/', views.Log_In_Out.as_view()),
@@ -24,5 +24,11 @@ urlpatterns = [
     url(r'^server/', include([
         url(r'^list/$', server.GroupList.as_view()),
         url(r'add_server', server.AddServer.as_view())
+    ])),
+    url(r'^cron/', include([
+        url(r'^list/$', cron.CronManger.as_view()),
+        url(r'^view/$', cron.CronView.as_view()),
+
     ]))
+
 ]
