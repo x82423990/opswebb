@@ -38,7 +38,7 @@ class Log_In_Out(View):
 
 
 class LogOut(View):
-
+    @method_decorator(login_required)
     def get(self, request):
         logout(request)
         return HttpResponse('用户退出chenggong')
@@ -46,7 +46,7 @@ class LogOut(View):
 
 class IndexView(View):
     @method_decorator(login_required)
-    @method_decorator(permission_required('dashborad.view_server', login_url='/permissions/none'))
+    # @method_decorator(permission_required('dashborad.view_server', login_url='/permissions/none'))
     def get(self, request):
         # if request.user.has_perm('dashborad.view_server'):
         #     logger.debug('有权限')
@@ -60,5 +60,6 @@ class IndexView(View):
         return render(request, "public/index.html")
 
 
+@login_required
 def permit(request):
     return render(request, "public/pr.html")

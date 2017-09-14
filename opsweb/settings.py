@@ -75,6 +75,17 @@ WSGI_APPLICATION = 'opsweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'ops',
+        'USER': 'xie',
+        'PASSWORD': 'Fs9006',
+        'HOST': '192.168.44.132',
+        'PORT': 3306
+        }
+}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',

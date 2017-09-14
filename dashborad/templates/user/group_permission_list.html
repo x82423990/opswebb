@@ -1,0 +1,28 @@
+{% extends "public/layout.html" %}
+
+{% block body %}
+<d1 class="dl-horizontal">
+    <form action="" method="post" role="form" class="form-horizontal">
+    {% for i in content_type %}
+        <dt>{{ i.app_label }}---{{ i.model }}:</dt>
+            <dd>
+                <ul>
+                    {% for j in i.permission_set.all %}
+                    <li>
+                        <input type="checkbox" name="permission" value="{{ j.id }}" {% if j.id in group_permissions %}checked{% endif %}>
+                        <lable>{{ j.name }}</lable>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </dd>
+    {% endfor %}
+        <div>
+    <input type="hidden" name="group" value="{{ group }}">
+    <input type="submit" class="btn btn-primary" value="修改">
+    <input type="reset" class="btn warning" value="取消">
+
+</div>
+    </form>
+</d1>
+
+{% endblock %}

@@ -23,7 +23,23 @@ class Server(models.Model):
         #     # 权限列表  Permission.objects.filter(pk=28)
         #     # 清空权限 user.user_permissions = []
         #     # 检查用户是否拥有权限 has_perm来检查用户使用有权限
-        # )
+        # # )
+        # permissions = (
+        #     ('view_server', '访问服务器信息'),
+        #     ('view_user_list', '访问用户列表')
+
+        # 授权
+        # from django.contrib.auth.models import Permission, ContentType
+        # Permission()
+        # p
+        # .name = '访问用户列表'
+        #
+        # p.content_type = ct
+        #
+        # p.codename = 'view_user_list'
+        #
+        # p.save()
+
 
 
 class test(models.Model):
