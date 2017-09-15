@@ -5,6 +5,7 @@
         <div style="clear:both;"></div>
     </div>
     <div class="wt100" style="position:relative; overflow:hidden; height:100%">
+        <button class="btn btn-primary" data='{"s_id": "{{ s_id }}"}' id="sync_data"> {{ s_id }}</button>
         <lable>服务器：{{ hostname }}</lable>
         <table id="example" class="display" cellspacing="0" width="100%">
             <thead>
@@ -208,6 +209,12 @@ $(function () {
                table.search(tsval, false, false).draw();
            });
 
+           // 搞事情， 同步数据库
+           $('#sync_data').on("click", function () {
+           data = JSON.parse($(this).attr('data'));
+           console.log(data.s_id)
+           });
+
            //checkbox全选
            $("#checkAll").on("click", function () {
                if ($(this).prop("checked") === true) {
@@ -244,6 +251,7 @@ $(function () {
                $('.showul').toggle();
 
            })
+
 
            //获取表格宽度赋值给右侧弹出层
            wt = $('.wt100').width();
@@ -301,6 +309,7 @@ $(function () {
                $('.clickdom').attr('isclick', true)
                $(obj).attr('isclick', false)
            }
+
 
        }
     </script>

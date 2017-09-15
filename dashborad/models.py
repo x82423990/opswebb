@@ -41,6 +41,10 @@ class Server(models.Model):
         # p.save()
 
 
+class Crontab(models.Model):
+    details = models.CharField(max_length=256)
+    host = models.ForeignKey(Server, null=False)
+
 
 class test(models.Model):
     a = models.CharField(max_length=21)
