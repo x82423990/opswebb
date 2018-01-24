@@ -9,10 +9,13 @@ import logging
 from dashborad.models import Server
 
 
+
 class GroupList(ListView):
+
     template_name = 'public/server_list.html'
     model = Server
     paginate_by = 10
+
 
 
 class AddServer(View):
@@ -27,3 +30,13 @@ class AddServer(View):
             print e
         return HttpResponseRedirect('/server/list')
         # return HttpResponse(request)
+
+    def delete(self, request):
+
+        pass
+
+    def update(self, request):
+
+        pass
+
+

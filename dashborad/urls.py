@@ -1,8 +1,8 @@
 from django.conf.urls import url, include
 from . import views
-from . import user, server
+from . import user, server, k8s
 from dashborad.user import group
-from dashborad import cron
+from dashborad.k8s import deletes
 urlpatterns = [
     # url(r'^login/', views.login_view),
     url(r'^login/', views.Log_In_Out.as_view()),
@@ -27,10 +27,13 @@ urlpatterns = [
         url(r'^list/$', server.GroupList.as_view()),
         url(r'add_server', server.AddServer.as_view())
     ])),
-    url(r'^cron/', include([
-        url(r'^list/$', cron.CronManger.as_view()),
-        url(r'^view/$', cron.CronView.as_view()),
-
+    url(r'^k8s/', include([
+        url(r'^podlist/$', k8s.pod_list),
+        url(r'^nmlist/$', k8s.Nm_list.as_view()),
+        url(r'^delete/ns/(?P<ns>.*)/$', deletes.delete_ns, name='delete'),
+        url(r'^delete/dp/(?P<dp>.*)/$', deletes.delete_dp, name='delete_dp'),
+        url(r'^dp/$', k8s.Dp_list.as_view(), name='test'),
+        url(r'^dp/(?P<types>.*)$', k8s.Add_Mod_Dp.as_view(), name='test'),
+        url(r'^select/(?P<types>.*)', k8s.SelectType.as_view(), name='ls_ns')
     ]))
-
 ]

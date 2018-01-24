@@ -127,6 +127,11 @@ class PermissionList(TemplateView):
             g.permissions = pms_obj
         return HttpResponseRedirect('/group/list/')
 
+    def delete(self, request):
+        pass
+
+    def update(self, request):
+        pass
 
 
 

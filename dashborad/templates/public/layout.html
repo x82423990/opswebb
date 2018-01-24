@@ -13,7 +13,8 @@
 <link href="/static/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 
 <!--第三方插件样式-->
-<link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--<link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="/static/vendor/datatable/datatable.css" rel="stylesheet">
 <link href="/static/vendor/metismenu/metismenu.min.css" rel="stylesheet">
 <link href="/static/vendor/alert/sweet-alert.css" rel="stylesheet">
@@ -22,6 +23,7 @@
 <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="/static/chosen/css/chosen.min.css" rel="stylesheet" type="text/css">
 <link href="/static/chosen/css/chosen-bootstrap.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all">
 <!--自定义样式文件 ＊重要＊-->
 <link href="/static/vendor/sb-admin-2.css" rel="stylesheet">
 
@@ -92,7 +94,7 @@ button.detail{
 
 <!--页面头部导航 -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-    <a class="navbar-brand" href="/">上弦月</a>
+    <a class="navbar-brand" href="/">ops平台</a>
     <ul class="nav navbar-nav">
 	<li  class="dropdown" id="profile-messages" >
     <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="fa fa-user fa-fw"></i><span class="text">{{ user.username}}</span><b class="caret"></b></a>
@@ -106,7 +108,7 @@ button.detail{
     </ul>
     <ul class="nav navbar-nav pull-right">
         <li><a href="#" target="_blank">github</a></li>
-        <li><a href="monitor.qptianxia.com:3000" target="_blank">prometheus</a></li>
+        <li><a href="monitor.heshidai.com:3000" target="_blank">prometheus</a></li>
     </ul>
     <form class="navbar-form">
         <input type="text" class="form-control" placeholder="Search...">
@@ -119,7 +121,7 @@ button.detail{
 <!--页面正文部分-->
 
 <div id="page-wrapper">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div id='main-content' class="col-md-12" style='padding-top:20px;'>
                 <div id="content-header">

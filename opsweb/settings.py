@@ -1,3 +1,4 @@
+# encoding: utf-8
 """
 Django settings for opsweb project.
 
@@ -93,7 +94,7 @@ DATABASES = {
 #         'NAME': 'ops',
 #         'USER': 'xie',
 #         'PASSWORD': 'Fs9006',
-#         'HOST': '192.168.44.132',
+#         'HOST': '192.168.254.191',
 #         'PORT': 3306
 #         }
 # }
@@ -101,10 +102,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': '51reboot1',
+        'NAME': 'k8s',
         'USER': 'woniu',
         'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'HOST': '192.168.254.191',
         'PORT': 3306
         }
 }
@@ -122,7 +123,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+# 斜杠
+# APPEND_SLASH = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

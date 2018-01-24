@@ -23,6 +23,7 @@ class Server(models.Model):
         #     # 权限列表  Permission.objects.filter(pk=28)
         #     # 清空权限 user.user_permissions = []
         #     # 检查用户是否拥有权限 has_perm来检查用户使用有权限
+        #     # 检查用户是否拥有权限 has_perm来检查用户使用有权限
         # # )
         # permissions = (
         #     ('view_server', '访问服务器信息'),
@@ -41,13 +42,14 @@ class Server(models.Model):
         # p.save()
 
 
-class Crontab(models.Model):
-    details = models.CharField(max_length=256)
-    host = models.ForeignKey(Server, null=False)
+# class Crontab(models.Model):
+#     details = models.CharField(max_length=256)
+#     host = models.ForeignKey(Server, null=False)
 
 
 class test(models.Model):
     a = models.CharField(max_length=21)
+    on_delete = models.DO_NOTHING,
 
 
 class IDC(models.Model):
@@ -77,7 +79,7 @@ class Profile(models.Model):
     class Meta:
         db_table = 'user_profile'
         default_related_name = 'profile'
-# 一个一对一的例子
+# # 一个一对一的例子
     # user = models.OneToOneField(User) 关联一对一关联
     #
     # user = User.objects.create_user('rock11', 'rock@51@.com', '123')
