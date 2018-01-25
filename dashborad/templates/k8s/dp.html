@@ -5,7 +5,7 @@
 <table class="table table-hover">
      <tr>
         <caption>
-            <button id ='add_group' class="btn-primary" type="button">添加Deployment</button>
+            <button id ='add_dp' class="btn-primary" type="button">添加Deployment</button>
         </caption>
     </tr>
 
@@ -33,10 +33,9 @@
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">修改RC</a></li>
-                    <!--<li role="presentation"><a role="menuitem" tabindex="-1" id="delete_ns" value={{ i }} >delete</a></li>-->
                        <li>
                          <a id="modal_button_{{ i.metadata.name }}" class="red" href="#modal_form"
-                            data-toggle="modal"  rel="/k8s/delete/dp/{{ i.metadata.name }}/" content="确认删除该条目么？"
+                            data-toggle="modal" rel="{{ i.metadata.name }}" content="{{ i.metadata.namespace }}"
                          title="删除信息">
                             <span class="red">
                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
@@ -85,7 +84,7 @@
  </div>
 
 
-<!--修改RC 模态框-->
+<!--修改DP 模态框-->
 <div class="modal fade" id="chg_rc" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -116,10 +115,10 @@
 <script>
             $(function(){
              // 下拉列表
-            $("#add_group").click(function () {
-            // var create_group_modal=$('#create_group')
-            // create_group_modal.modal('show')
-            window.location.href="pod.html";
+            $("#add_dp").click(function () {
+            var create_group_modal=$('#create_group')
+            create_group_modal.modal('show')
+            //window.location.href="http://127.0.0.1:8880/k8s/select/add";
             // 执行添加用户组
             $('#create_group_btn').click(function () {
 
@@ -149,11 +148,9 @@
                     }
                 })
             })
-        });
+        })
 
-
-
-
+                
 
                // 渲染 img
 
@@ -177,7 +174,6 @@
             })
 
 
-
                // 渲染 tags
 
             $('#tags').click(function () {
@@ -199,8 +195,6 @@
             })
 
 
-
-
                 // 渲染pj
             $('#pj').click(function () {
                 $.ajax({
@@ -215,10 +209,6 @@
                     }
                 });
             })
-
-
-
-
 
 
 
@@ -244,54 +234,49 @@
 
 
 
-
-
-
-
-
-
-
-
-
         $("[href='#modal_form']").click(function(){
               //定义modal_id，确保每个按钮所产生的id不一样，否则将会是最先遇到的那个
             var modal_id = "#" + $(this).attr('id');
             console.log(modal_id)
-            console.log($(modal_id).attr('rel'))
-     //填充modal的各种元素
-    $('.modal-title').text($(modal_id).attr('title'));
-    $('.modal-body').text($(modal_id).attr('content'));
-     //form提交
-    $('#myForm').on('submit', function(e){
-         //防止冒泡
-         e.preventDefault();
-         //提交到相应的rel上
-      $.post($(modal_id).attr('rel'),
-         $(this).serialize(),
-         function(data, status, xhr) {
-             //网页返回正常且删除操作成功
-             console.log('----------')
-            if (status == 'success' && data == 'success') {
-                 $('.modal-body').text('操作成功');
-                 $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>');
-            //提交失败的操作
-             } else {
-                 $('.modal-body').text('操作失败，请重新选择条目，或联系管理人员');
-             $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>');
-         }
-         });
-    });
-});
-        //当modal页面消失后，重新将页面刷新
-        $(function () { $('#modal_form').on('hide.bs.modal', function () {
-        window.location.reload();})
-   });
-            var server_add_modal= $('#addUserModal')
-            $('#add-server-btn').click(function () {
-            server_add_modal.modal('show')
-                });
-                })
+            var dp_name = $(modal_id).attr('rel')
+            var ns_name = $(modal_id).attr('content')
+            console.log(dp_name)
+            console.log(ns_name)
 
+
+                //填充modal的各种元素
+                $('.modal-title').text('删除信息');
+                $('.modal-body').text('确认要删除DeployMent  '+$(modal_id).attr('rel')+'?');
+                 //form提交
+                $('#myForm').on('submit', function(e){
+                     //防止冒泡
+                     e.preventDefault();
+                     //提交到相应的rel上
+                  var  url = '/k8s/dp/delete'
+                  $.post(url, {'dp_name': dp_name, 'ns_name': ns_name},
+                     function(ret) {
+                         //网页返回正常且删除操作成功
+                         console.log('----------')
+                        if (ret.status==0){
+                             $('.modal-body').text('操作成功');
+                             $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>');
+                        //提交失败的操作
+                         } else {
+                             $('.modal-body').text(ret.msg);
+                         $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>');
+                     }
+                     });
+                });
+            });
+                    //当modal页面消失后，重新将页面刷新
+                    $(function () { $('#modal_form').on('hide.bs.modal', function () {
+                    window.location.reload();})
+               });
+                        var server_add_modal= $('#addUserModal')
+                        $('#add-server-btn').click(function () {
+                        server_add_modal.modal('show')
+                            });
+                            })
 
 </script>
 {% endblock %}
