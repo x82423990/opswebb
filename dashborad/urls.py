@@ -31,7 +31,6 @@ urlpatterns = [
         url(r'^podlist/$', k8s.pod_list),
         url(r'^nmlist/$', k8s.Nm_list.as_view()),
         url(r'^delete/ns/(?P<ns>.*)/$', deletes.delete_ns, name='delete'),
-        url(r'^delete/dp/(?P<dp>.*)/$', deletes.delete_dp, name='delete_dp'),
         url(r'^dp/$', k8s.Dp_list.as_view(), name='test'),
         url(r'^dp/(?P<types>.*)$', k8s.Add_Mod_Dp.as_view(), name='test'),
         url(r'^select/(?P<types>.*)', k8s.SelectType.as_view(), name='ls_ns')

@@ -5,13 +5,8 @@ from django.template import RequestContext, loader
 from django.views.generic import TemplateView, View, ListView
 from con import con
 from kubernetes import client, config
-import repitl
-from dashborad.models import Department, Profile
-from django.conf import settings
-from opsweb.settings import TEMPLATE_JUMP
-from django.contrib.auth.decorators import login_required, permission_required
-from django.utils.decorators import method_decorator
-from django.core import serializers
+import repitl, dp
+from django.shortcuts import render
 
 #
 # class PodList(TemplateView):
@@ -117,6 +112,8 @@ class SelectType(View):
 
     def get(self, request, types):
         print(types)
+        if types == 'add':
+            return render(request, 'k8s/dpp.html', {'title': 'rebbot 晕为'})
         if types == 'img':
             a = repitl.get_image_name()
             return JsonResponse(a, safe=False)
@@ -151,15 +148,38 @@ class SelectType(View):
 class Add_Mod_Dp(View):
     def post(self, request, types):
         if types == 'add':
-            print(request.POST.get('ns'))
-            print(request.POST.get('image'))
-            print(request.POST.get('tags'))
-            print(request.POST.get('rc'))
-            print(request.POST.get('env'))
-
+            ns = request.POST.get('ns').encode('utf-8')
+            msg = request.POST.get('image').encode('utf-8')
+            tags = request.POST.get('tags').encode('utf-8')
+            rc = int(request.POST.get('rc').encode('utf-8'))
+            env = request.POST.get('env').encode('utf-8')
+            print(ns, msg, tags, rc, env)
+            try:
+                config.load_kube_config()
+                extensions_v1beta1 = client.ExtensionsV1beta1Api()
+                deploy = dp.create_deployment_object(tags=tags, images=msg, rc=rc, envs=env)
+                dp.create_deployment(extensions_v1beta1, deploy, ns=ns)
+            except Exception as e:
+                return HttpResponse(e)
+            # if msg == images:
             return HttpResponse('ok')
-
-
+        if types =='delete':
+            ns = request.POST.get('ns_name').encode('utf-8')
+            dp_name = request.POST.get('dp_name').encode('utf-8')
+            ret = {'status': 0}
+            if dp_name is None:
+                ret['status'] = 100
+                ret['msg'] = 'ns_name or dp_name is None'
+                return JsonResponse(ret)
+            else:
+                try:
+                    config.load_kube_config()
+                    extensions_v1beta1 = client.ExtensionsV1beta1Api()
+                    dp.delete_deployment(extensions_v1beta1, ns=ns, images=dp_name)
+                    ret['status'] = 0
+                except Exception as e:
+                    ret['msg'] = e
+                return JsonResponse(ret)
 
 
 

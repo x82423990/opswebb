@@ -31,7 +31,7 @@
                     <!--<li role="presentation"><a role="menuitem" tabindex="-1" id="delete_ns" value={{ i }} >delete</a></li>-->
                        <li>
                          <a id="modal_button_{{ i }}" class="red" href="#modal_form"
-                            data-toggle="modal"  rel="/k8s/delete/{{ i }}/" content="确认删除该条目么？"
+                            data-toggle="modal"  rel="/k8s/delete/ns/{{ i }}/" content="确认删除该条目么？"
                          title="删除信息">
                             <span class="red">
                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
@@ -149,6 +149,7 @@
      //form提交
     $('#myForm').on('submit', function(e){
          //防止冒泡
+        console.log($(modal_id).attr('rel'))
          e.preventDefault();
          //提交到相应的rel上
       $.post($(modal_id).attr('rel'),
