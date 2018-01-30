@@ -470,9 +470,3 @@ class Ing_Add_Mod(View):
 
 
 
-
-
-
-
-
-
