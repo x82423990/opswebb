@@ -23,8 +23,8 @@
     <td>{{ forloop.counter }}</td>
     <td>{{ i.metadata.name }}</td>
     <td>{{ i.metadata.namespace }}</td>
-    <td>{{ i.status.available_replicas }}</td>
     <td>{{ i.status.replicas }}</td>
+    <td>{{ i.status.available_replicas }}</td>
     <td class="user_status">
         <div class="btn-group">
                 <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
@@ -117,37 +117,37 @@
              // 下拉列表
             $("#add_dp").click(function () {
             var create_group_modal=$('#create_group')
-            create_group_modal.modal('show')
-            //window.location.href="http://127.0.0.1:8880/k8s/select/add";
-            // 执行添加用户组
-            $('#create_group_btn').click(function () {
-
-                var gropu_input = $('#form_groupname');
-                var group_value = gropu_input.val();
-                console.log(group_value)
-                if (group_value == ''){
-                    swal('add filed','username is not null', 'error')
-                    return false
-                }
-                create_group_modal.modal('hide')
-                $.post('', {'name': group_value}, function (res) {
-                    console.log(res)
-                    if (res.status == 0 ){
-                        swal({
-                            'title': 'add success',
-                            'text': '',
-                            'type': 'success',
-                        },function () {
-                            setTimeout(function () {
-                                window.location.reload()
-                            },50);
-                        })
-                    }else{
-                        console.log(res.msg)
-                        swal('操作失败', res.msg, 'error')
-                    }
-                })
-            })
+            // create_group_modal.modal('show')
+            window.location.href="http://127.0.0.1:8880/k8s/select/add";
+            // tianjia dp
+            // $('#create_group_btn').click(function () {
+            //
+            //     var gropu_input = $('#form_groupname');
+            //     var group_value = gropu_input.val();
+            //     console.log(group_value)
+            //     if (group_value == ''){
+            //         swal('add filed','username is not null', 'error')
+            //         return false
+            //     }
+            //     create_group_modal.modal('hide')
+            //     $.post('', {'name': group_value}, function (res) {
+            //         console.log(res)
+            //         if (res.status == 0 ){
+            //             swal({
+            //                 'title': 'add success',
+            //                 'text': '',
+            //                 'type': 'success',
+            //             },function () {
+            //                 setTimeout(function () {
+            //                     window.location.reload()
+            //                 },50);
+            //             })
+            //         }else{
+            //             console.log(res.msg)
+            //             swal('操作失败', res.msg, 'error')
+            //         }
+            //     })
+            //})// click时间结束
         })
 
 

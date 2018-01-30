@@ -9,28 +9,83 @@
 
 
 
+<!--method="post" action="/k8s/dp/add"-->
+<form class="layui-form layui-form-pane" action="" id="create_dp_form" lay-fleter="create_dp_form">
 
-<form class="layui-form layui-form-pane" action="">
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">NameSpaces</label>
+      <div class="layui-input-inline">
+        <select name="ns" lay-filter="ns" lay-verify="required|string" id="ns">
+          <!--<option value="">test</option>-->
+        </select>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">Project</label>
+      <div class="layui-input-inline">
+        <select name="pj" lay-filter="pj" lay-verify="required|number" id="pj">
+          <!--<option value="">test</option>-->
+        </select>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">Image</label>
+      <div class="layui-input-block">
+        <select name="image" lay-filter="img" lay-verify="required|string" id="img">
+          <!--<option value="">test</option>-->
+        </select>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">Tags</label>
+      <div class="layui-input-inline">
+        <select name="tags" lay-filter="tags" lay-verify="required|string" id="tags">
+          <!--<option value="">test</option>-->
+        </select>
+      </div>
+    </div>
 
 
-  <div class="layui-form-item">
-    <label class="layui-form-label">单行选择框</label>
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">配置文件</label>
+        <div class="layui-input-inline">
+          <input type="text" name="env" lay-verify="required|string" autocomplete="off" placeholder="online/test"class="layui-input">
+        </div>
+      </div>
+    </div>
+
+
+
+     <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">RC</label>
+        <div class="layui-input-inline">
+          <input type="text" name="rc" lay-verify="required|number" autocomplete="off" placeholder="请输入一个整数"class="layui-input">
+        </div>
+      </div>
+    </div>
+    <!--<div class="layui-form-item">-->
+    <!--<button class="layui-btn" lay-submit="" lay-filter="demo2">提交</button>-->
+  <!--</div>-->
+      <div class="layui-form-item">
     <div class="layui-input-block">
-      <select name="interest" lay-filter="aihao" id="sns">
-        <!--<option value=""></option>-->
-      </select>
+      <button class="layui-btn" lay-submit="" lay-filter="demo2">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
   </div>
 
 </form>
 
-<!--<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>-->
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-
 
 {% endblock %}
 {% block js%}
 <script>
+
 
 
 layui.use(['form', 'layedit', 'laydate'], function(){
@@ -70,45 +125,139 @@ layui.use(['form', 'layedit', 'laydate'], function(){
     });
     layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
   });
+    // 初始渲染
+
+         $.ajax({
+              type: "GET",
+              url: "http://127.0.0.1:8880/k8s/select/ns",
+              success: function (data) {
+                  $("#ns").empty()
+                  console.log(data)
+                  for (var i in data) {
+                      $("#ns").append("<option value=" + data[i] + ">" + data[i] + "</option>")
+                      console.log('-----')
+                  }
+                  // $("#test").append('<option value="">test1</option>')
+                  form.render();
+              }
+          })
 
 
-  //监听提交
-  form.on('submit(demo1)', function(data){
-    layer.alert(JSON.stringify(data.field), {
-      title: '最终的提交信息'
-    })
-    return false;
-  });
+         $.ajax({
+            type: "GET",
+            url: "/k8s/select/pj",
+            success: function (data) {
+                console.log('pj')
+                $("#pj").empty()
+                // var nw = JSON.parse(data)
+                console.log(data)
+                for (var i in data) {
+                    $("#pj").append("<option value=" + i + ">" + data[i] + "</option>")
+                    console.log(i)
+                }
+                form.render();
+            }
+        })
+
+        // 开始渲染img
+         form.on('select(pj)', function(data){
+          console.log(data.value); //得到被选中的值
+                $.ajax({
+                    type:"POST",
+                    data: {"pid": data.value},
+                    url:"/k8s/select/img",
+                    success:function(data) {
+                        $("#img").empty()
+                        // var nw = JSON.parse(data)
+                        console.log(data)
+                        for (var i in data) {
+                            $("#img").append("<option value="+data[i]+ ">"+data[i]+ "</option>")
+                        }
+                        form.render();
+                    }
+                });
+         }); // 渲染img
+
+
+
+         form.on('select(img)', function(data){
+          console.log(data.value); //得到被选中的值
+             $.ajax({
+                type:"POST",
+                data: {"image": data.value},
+                url:"/k8s/select/tags",
+
+                success:function(data) {
+                    $("#tags").empty()
+                    for (var i in data) {
+                        $("#tags").append("<option value="+data[i]+ ">"+data[i]+ "</option>")
+                    }
+                    console.log('bb')
+                    form.render();
+                }
+            });
+         });
+          //监听提交
+          form.on('submit(demo2)', function(data){
+            // )
+              console.log(data.field)
+               $.post('/k8s/dp/add',data.field,function(res){
+                    if (res.status == 0 ){
+                        swal({
+                            'title': 'add success',
+                            'text': '',
+                            'type': 'success',
+                        },function () {
+                            setTimeout(function () {
+                                window.location.reload()
+                            },50);
+                        })
+                    }else{
+                        console.log(res.msg)
+                        swal('操作失败', res.msg, 'error')
+                    }
+        });
+            return false;
+          });
+    //     $("#create_dp_form").ajaxForm(function(ret){
+    //     if(ret.status==0){
+    //         alert("提交成功！");
+    //     }
+    // });
+
+
+
+    // $('#pj').nextAll().find('input').click(function () {
+    //         $.ajax({
+    //         type: "GET",
+    //         url: "http://127.0.0.1:8880/k8s/select/ns",
+    //         success: function (data) {
+    //             console.log('pj')
+    //             $("#pj").empty()
+    //             // var nw = JSON.parse(data)
+    //             console.log(data)
+    //             for (var i in data) {
+    //                 $("#pj").append("<option value=" + i + ">" + i + "</option>")
+    //                 console.log(i)
+    //             }
+    //             form.render('select', 'pj');
+    //         }
+    //     })
+    //  form.render();
+    //
+    //
+    //     console.log('----------')
+    //        //     console.log('qqqq')
+    //         console.log($.prototype.jquery)
+// });// 监听提交
+
 
 
 });
 
 
-$(function() {
-    console.log('aaa')
-
-
-    $('#sns').click(function () {
-        console.log('qqqq')
-            console.log($.prototype.jquery)
-            $.ajax({
-            type: "GET",
-            url: "http://127.0.0.1:8880/k8s/select/ns",
-            success: function (data) {
-                $("#sns").empty()
-                // var nw = JSON.parse(data)
-                console.log(data)
-                for (var i in data) {
-                    $("#sns").append("<option value=" + data[i] + ">" + data[i] + "</option>")
-                }
-            }
-        })
-
-    })
-})
 
 
 
 </script>
-
 {% endblock %}

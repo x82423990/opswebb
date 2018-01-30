@@ -39,7 +39,7 @@
                             </a>
                         </li>
                 </ul>
-
+        </div>
     </td>
 </tr>
 {% endfor %}
@@ -127,17 +127,6 @@
             })
         })
 
-            // $('#delete_ns').click(function () {
-            //
-            //     // 获取li标签的值
-            //     var ns = $('#delete_ns').attr('value');
-            //     console.log(ns)
-            //     $.post('', {'ns': ns}),function (res) {
-            //         console.log(ns)
-            //     }
-            //
-            // })
-
         $("[href='#modal_form']").click(function(){
               //定义modal_id，确保每个按钮所产生的id不一样，否则将会是最先遇到的那个
             var modal_id = "#" + $(this).attr('id');
@@ -171,12 +160,12 @@
         //当modal页面消失后，重新将页面刷新
         $(function () { $('#modal_form').on('hide.bs.modal', function () {
         window.location.reload();})
-   });
-            var server_add_modal= $('#addUserModal')
-            $('#add-server-btn').click(function () {
-            server_add_modal.modal('show')
-                });
-                })
+            });
+            // var server_add_modal= $('#addUserModal')
+            // $('#add-server-btn').click(function () {
+            // server_add_modal.modal('show')
+            //     });
+                 })
 
 
 </script>

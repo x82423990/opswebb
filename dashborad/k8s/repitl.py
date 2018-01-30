@@ -81,6 +81,7 @@ def get_image_name(url='http://hub.heshidai.com/api/repositories?project_id=', p
 
 if __name__ == '__main__':
 
-    get_tags('gold/hsdgold-console-pc')
+    # get_tags('gold/hsdgold-console-pc')
+    get_project()
 
 

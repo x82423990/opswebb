@@ -1,32 +1,32 @@
 {% extends "public/layout.html" %}
 
 {% block body %}
-<h3> Service</h3>
+<h3> Ingress </h3>
 <table class="table table-hover">
      <tr>
         <caption>
-            <button type="button" id="add-svc-btn" class="btn btn-info">添加Svc</button>
+            <button type="button" id="add-ing-btn" class="btn btn-info">添加Ingress</button>
         </caption>
     </tr>
 <!--i.metadata.name,i.metadata.namespace,i.spec.cluster_ip, i.spec.selector-->
     <tr>
         <th>#</th>
-        <th>Server Nmae</th>
-        <th>NameSpace</th>
-        <th>Server_Ip</th>
-        <th>Type</th>
-        <th>selector</th>
+        <th>Ingress Name</th>
+        <th>Name Spaces</th>
+        <th>Server name</th>
+        <th>PORT</th>
+        <th>domain name</th>
         <th>操作</th>
     </tr>
-
-{% for i in svc_list %}
+{% for i in ing_list %}
 <tr>
     <td>{{ forloop.counter }}</td>
-    <td>{{ i.metadata.name }}</td>
-    <td>{{ i.metadata.namespace }}</td>
-    <td>{{ i.spec.cluster_ip }}</td>
-    <td>{{ i.spec.type }}</td>
-    <td>{{ i.spec.selector }}</td>
+
+    <td>{{ i.name }}</td>
+    <td>{{ i.namespaces }}</td>
+    <td>{{ i.svc_name }}</td>
+    <td>{{ i.svc_port }}</td>
+    <td>{{ i.host }}</td>
     <td class="user_status">
         <div class="btn-group">
                 <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
@@ -36,8 +36,8 @@
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">修改RC</a></li>
                        <li>
-                         <a id="modal_button_{{ i.metadata.name }}" class="red" href="#modal_form"
-                            data-toggle="modal" rel="{{ i.metadata.name }}" content="{{ i.metadata.namespace }}"
+                         <a id="modal_button_{{ i.name }}" class="red" href="#modal_form"
+                            data-toggle="modal" rel="{{ i.name }}" content="{{ i.namespaces }}"
                          title="删除信息">
                             <span class="red">
                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
@@ -52,23 +52,21 @@
 </table>
 
 
-
-<div class="modal fade" id="create_svc" aria-hidden='true'>
+<!--add 模态框-->
+<div class="modal fade" id="create_ing" aria-hidden='true'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class='close' data-dismiss="modal">x</button>
-                <h4>new namespaces</h4>
-                 {% include 'k8s/add_svc_form.html' %}
+                <h4>new Ingress</h4>
+                 {% include 'k8s/add_ing_form.html' %}
             </div>
         </div>
-
     </div>
-
 </div>
 
 
-
+<!--// 删除模态框-->
  <div class="modal fade" id="modal_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
@@ -121,62 +119,62 @@
 {% block js%}
 <script>
             $(function(){
-             // 下拉列表
-            $("#add-svc-btn").click(function () {
-            var create_svc_modal=$('#create_svc')
-            create_svc_modal.modal('show')
+             // 添加ing
+            $("#add-ing-btn").click(function () {
+                // 显示模态框
+                 $('#create_ing').modal('show')
+
             // window.location.href="http://127.0.0.1:8880/k8s/select/add";
             // 执行添加用户组
-            $('#create_svc_btn').click(function () {
-
-                var gropu_input = $('#form_groupname');
-                var group_value = gropu_input.val();
-                console.log(group_value)
-                if (group_value == ''){
-                    swal('add filed','username is not null', 'error')
-                    return false
-                }
-                create_svc_modal.modal('hide')
-                $.post('', {'name': group_value}, function (res) {
-                    console.log(res)
-                    if (res.status == 0 ){
-                        swal({
-                            'title': 'add success',
-                            'text': '',
-                            'type': 'success',
-                        },function () {
-                            setTimeout(function () {
-                                window.location.reload()
-                            },50);
-                        })
-                    }else{
-                        console.log(res.msg)
-                        swal('操作失败', res.msg, 'error')
-                    }
-                })
-            })
+            // $('#create_ing_btn').click(function () {
+            //     var gropu_input = $('#form_groupname');
+            //     var group_value = gropu_input.val();
+            //     console.log(group_value)
+            //     if (group_value == ''){
+            //         swal('add filed','username is not null', 'error')
+            //         return false
+            //     }
+            //
+            //     create_ing_modal.modal('hide')
+            //     $.post('', {'name': group_value}, function (res) {
+            //         console.log(res)
+            //         if (res.status == 0 ){
+            //             swal({
+            //                 'title': 'add success',
+            //                 'text': '',
+            //                 'type': 'success',
+            //             },function () {
+            //                 setTimeout(function () {
+            //                     window.location.reload()
+            //                 },50);
+            //             })
+            //         }else{
+            //             console.log(res.msg)
+            //             swal('操作失败', res.msg, 'error')
+            //         }
+            //     })
+            // })
         })
 
-
-        // 删除 svc
+        // 删除 ing
         $("[href='#modal_form']").click(function(){
               //定义modal_id，确保每个按钮所产生的id不一样，否则将会是最先遇到的那个
             var modal_id = "#" + $(this).attr('id');
             // console.log(modal_id)
-            var svc_name = $(modal_id).attr('rel')
+            var ing_name = $(modal_id).attr('rel')
             var ns_name = $(modal_id).attr('content')
-            console.log(svc_name)
+            console.log(ing_name)
             console.log(ns_name)
             //填充modal的各种元素
             $('.modal-title').text('删除信息');
-            $('.modal-body').text('确认要删除Service  '+$(modal_id).attr('rel')+'?');
+            $('.modal-body').text('确认要删除Ingress  '+$(modal_id).attr('rel')+'?');
              //form提交
             $('#myForm').on('submit', function(e){
                  //防止冒泡
                  e.preventDefault();
                  //提交到相应的rel上
-              var  url = '/k8s/svc/del'
-              $.post(url, {'svc_name': svc_name, 'ns_name': ns_name},
+              var  url = '/k8s/ing/del'
+              $.post(url, {'ing_name': ing_name, 'ns_name': ns_name},
                  function(ret) {
                      //网页返回正常且删除操作成功
                      console.log('----------')
@@ -251,17 +249,17 @@
               }
           })
 
-                // 开始渲染dep
+
+        // 开始渲染svc
         form.on('select(ns)', function(data){
           console.log(data.value); //得到被选中的值
                 $.ajax({
                     type:"POST",
                     data: {"ns": data.value},
-                    url:"/k8s/select/dep",
+                    url:"/k8s/select/svc",
                     success:function(data) {
                         $("#label").empty()
                         // var nw = JSON.parse(data)
-                        console.log(data)
                         for (var i in data) {
                             $("#label").append("<option value="+data[i]+ ">"+data[i]+ "</option>")
                         }
@@ -271,10 +269,10 @@
          }); // end渲染dep
             //提交表单
 
-                  form.on('submit(sbt_svc)', function(data){
+         form.on('submit(sbt_ing)', function(data){
             // )
               console.log(data.field)
-               $.post('/k8s/svc/add',data.field,function(res){
+               $.post('/k8s/ing/add',data.field,function(res){
                     if (res.status == 0 ){
                         swal({
                             'title': 'add success',

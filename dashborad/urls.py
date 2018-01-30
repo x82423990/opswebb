@@ -33,6 +33,11 @@ urlpatterns = [
         url(r'^delete/ns/(?P<ns>.*)/$', deletes.delete_ns, name='delete'),
         url(r'^dp/$', k8s.Dp_list.as_view(), name='test'),
         url(r'^dp/(?P<types>.*)$', k8s.Add_Mod_Dp.as_view(), name='test'),
-        url(r'^select/(?P<types>.*)', k8s.SelectType.as_view(), name='ls_ns')
+        url(r'^select/(?P<types>.*)', k8s.SelectType.as_view(), name='ls_ns'),
+        url(r'^svc/$', k8s.Svc_list.as_view(), name='list_svc'),
+        url(r'^svc/(?P<types>.*)$', k8s.Add_Mod_svc.as_view(), name='add_svc'),
+        url(r'^ingress/$', k8s.Ing_list.as_view(), name='list_ing'),
+        url(r'^ing/(?P<types>.*)$', k8s.Ing_Add_Mod.as_view(), name='m_c_ing'),
+
     ]))
 ]
