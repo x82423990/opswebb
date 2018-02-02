@@ -34,7 +34,7 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">修改RC</a></li>
+                    <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">修改RC</a></li>-->
                        <li>
                          <a id="modal_button_{{ i.metadata.name }}" class="red" href="#modal_form"
                             data-toggle="modal" rel="{{ i.metadata.name }}" content="{{ i.metadata.namespace }}"
@@ -52,13 +52,13 @@
 </table>
 
 
-
+<!--// 添加模态框-->
 <div class="modal fade" id="create_svc" aria-hidden='true'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class='close' data-dismiss="modal">x</button>
-                <h4>new namespaces</h4>
+                <h4>new svc</h4>
                  {% include 'k8s/add_svc_form.html' %}
             </div>
         </div>
@@ -156,8 +156,7 @@
                 })
             })
         })
-
-
+                
         // 删除 svc
         $("[href='#modal_form']").click(function(){
               //定义modal_id，确保每个按钮所产生的id不一样，否则将会是最先遇到的那个
