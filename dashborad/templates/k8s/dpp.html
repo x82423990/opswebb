@@ -129,7 +129,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 
          $.ajax({
               type: "GET",
-              url: "http://127.0.0.1:8880/k8s/select/ns",
+              url: "/k8s/select/ns",
               success: function (data) {
                   $("#ns").empty()
                   console.log(data)
@@ -197,7 +197,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
                 }
             });
          });
-          //监听提交
+          // 监听提交
           form.on('submit(demo2)', function(data){
             // )
               console.log(data.field)
@@ -209,7 +209,8 @@ layui.use(['form', 'layedit', 'laydate'], function(){
                             'type': 'success',
                         },function () {
                             setTimeout(function () {
-                                window.location.reload()
+                                // window.location.reload()
+                                $(location).attr('href', '/k8s/dp/');
                             },50);
                         })
                     }else{
@@ -219,38 +220,6 @@ layui.use(['form', 'layedit', 'laydate'], function(){
         });
             return false;
           });
-    //     $("#create_dp_form").ajaxForm(function(ret){
-    //     if(ret.status==0){
-    //         alert("提交成功！");
-    //     }
-    // });
-
-
-
-    // $('#pj').nextAll().find('input').click(function () {
-    //         $.ajax({
-    //         type: "GET",
-    //         url: "http://127.0.0.1:8880/k8s/select/ns",
-    //         success: function (data) {
-    //             console.log('pj')
-    //             $("#pj").empty()
-    //             // var nw = JSON.parse(data)
-    //             console.log(data)
-    //             for (var i in data) {
-    //                 $("#pj").append("<option value=" + i + ">" + i + "</option>")
-    //                 console.log(i)
-    //             }
-    //             form.render('select', 'pj');
-    //         }
-    //     })
-    //  form.render();
-    //
-    //
-    //     console.log('----------')
-    //        //     console.log('qqqq')
-    //         console.log($.prototype.jquery)
-// });// 监听提交
-
 
 
 });

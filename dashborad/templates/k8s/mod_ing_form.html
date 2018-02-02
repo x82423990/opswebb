@@ -3,7 +3,7 @@
       <div class="layui-inline">
         <label class="layui-form-label">Name</label>
         <div class="layui-input-inline">
-          <input type="text" name="ing_name"  autocomplete="off" placeholder="默认为Service name"class="layui-input">
+          <input type="text" name="ing_name"  autocomplete="off" disabled="disabled" class="layui-input" id="ing_name">
         </div>
       </div>
     </div>
@@ -13,7 +13,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">NameSpaces</label>
       <div class="layui-input-inline">
-        <select name="ns" lay-filter="ns" lay-verify="required|string" id="ns">
+        <select name="m_ns" lay-filter="m_ns"   id="m_ns">
           <!--<option value="">test</option>-->
         </select>
       </div>
@@ -22,7 +22,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">关联服务</label>
       <div class="layui-input-inline">
-        <select name="label" lay-filter="label" lay-verify="required|string" id="label">
+        <select name="m_label" lay-filter="m_label" lay-verify="required|string" id="m_label">
           <!--<option value="">test</option>-->
         </select>
       </div>
@@ -33,9 +33,9 @@
 
     <div class="layui-form-item">
       <div class="layui-inline">
-        <label class="layui-form-label">暴露端口</label>
+        <label class="layui-form-label">服务端口</label>
         <div class="layui-input-inline">
-          <input type="text" name="port" lay-verify="required|number" autocomplete="off" placeholder="~" class="layui-input">
+          <input type="text" name="m_port" lay-verify="required|number" autocomplete="off"  class="layui-input" id="m_port">
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
       <div class="layui-inline">
         <label class="layui-form-label">域名</label>
         <div class="layui-input-inline">
-          <input type="text" name="host" lay-verify="string" placeholder="默认为name+.cd.maijinbei.cn" holder autocomplete="off" placeholder=""class="layui-input">
+          <input type="text" name="m_host" lay-verify="string" placeholder="默认为name+.cd.maijinbei.cn" holder autocomplete="off" placeholder=""class="layui-input" id="m_host">
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
 
       <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit="" lay-filter="sbt_ing">立即提交</button>
+      <button class="layui-btn" lay-submit="" lay-filter="sbt_ing_mod">提交修改</button>
       <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
   </div>

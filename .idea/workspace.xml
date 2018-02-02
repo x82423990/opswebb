@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12cdc0bf-7649-4eda-89dc-18efaf1e1f77" name="Default" comment="">
+    <list default="true" id="12cdc0bf-7649-4eda-89dc-18efaf1e1f77" name="Default" comment="add/del deployment.">
+      <change beforePath="" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/1.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/mod_dp_form.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/mod_ing_form.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/dashborad/k8s/__init__.py" afterPath="$PROJECT_DIR$/dashborad/k8s/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/dashborad/k8s/dp.py" afterPath="$PROJECT_DIR$/dashborad/k8s/dp.py" />
+      <change beforePath="$PROJECT_DIR$/dashborad/k8s/repitl.py" afterPath="$PROJECT_DIR$/dashborad/k8s/repitl.py" />
+      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/add_ing_form.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/add_ing_form.html" />
+      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/add_svc_form.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/add_svc_form.html" />
+      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/dp.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/dp.html" />
+      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/dpp.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/dpp.html" />
+      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/ingress.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/ingress.html" />
+      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/namespace.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/namespace.html" />
+      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/service.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/service.html" />
+      <change beforePath="$PROJECT_DIR$/logs/dj.log" afterPath="$PROJECT_DIR$/logs/dj.log" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,66 +27,47 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/opswebb$con.coverage" NAME="con Coverage Results" MODIFIED="1516588088304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dashborad/k8s" />
-    <SUITE FILE_PATH="coverage/opswebb$test.coverage" NAME="test Coverage Results" MODIFIED="1516797106336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dashborad/k8s" />
+    <SUITE FILE_PATH="coverage/opswebb$test.coverage" NAME="test Coverage Results" MODIFIED="1517451978001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dashborad/k8s" />
     <SUITE FILE_PATH="coverage/opswebb$svc.coverage" NAME="svc Coverage Results" MODIFIED="1516954419828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dashborad/k8s" />
     <SUITE FILE_PATH="coverage/opswebb$pydevd.coverage" NAME="pydevd Coverage Results" MODIFIED="1516699677309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_HOME_DIR$/helpers/pydev" />
-    <SUITE FILE_PATH="coverage/opswebb$repitl.coverage" NAME="repitl Coverage Results" MODIFIED="1516977521836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dashborad/k8s" />
+    <SUITE FILE_PATH="coverage/opswebb$repitl.coverage" NAME="repitl Coverage Results" MODIFIED="1517447538403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dashborad/k8s" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="dp.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/dp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1965">
-              <caret line="150" column="10" lean-forward="false" selection-start-line="150" selection-start-column="10" selection-end-line="150" selection-end-column="10" />
+            <state relative-caret-position="265">
+              <caret line="205" column="31" lean-forward="false" selection-start-line="205" selection-start-column="29" selection-end-line="205" selection-end-column="31" />
               <folding>
-                <element signature="n#div#1;n#!!top" expanded="false" />
-                <element signature="e#7423#7951#0" expanded="false" />
+                <element signature="n#script#0;n#!!top" expanded="false" />
+                <element signature="e#9197#9895#0" expanded="false" />
+                <element signature="e#9976#10511#0" expanded="false" />
+                <element signature="e#10125#10498#0" expanded="false" />
+                <element signature="e#11978#12723#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashborad/k8s/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="438" column="0" lean-forward="true" selection-start-line="438" selection-start-column="0" selection-end-line="438" selection-end-column="0" />
+            <state relative-caret-position="577">
+              <caret line="445" column="0" lean-forward="true" selection-start-line="445" selection-start-column="0" selection-end-line="445" selection-end-column="0" />
               <folding>
                 <element signature="e#18#68#0" expanded="true" />
                 <element signature="e#342#343#0" expanded="false" />
                 <element signature="e#1521#1879#0" expanded="false" />
-                <element signature="e#1915#3063#0" expanded="false" />
-                <element signature="e#3099#3472#0" expanded="false" />
-                <element signature="e#3504#5416#0" expanded="false" />
-                <element signature="e#5447#8347#0" expanded="false" />
-                <element signature="e#8384#8937#0" expanded="false" />
-                <element signature="e#8970#12704#0" expanded="false" />
-                <element signature="e#9079#9080#0" expanded="false" />
-                <element signature="e#12168#12704#0" expanded="false" />
-                <element signature="e#12741#13550#0" expanded="false" />
-                <element signature="e#13583#15818#0" expanded="false" />
+                <element signature="e#1915#3140#0" expanded="false" />
+                <element signature="e#3268#4216#0" expanded="false" />
+                <element signature="e#4248#6219#0" expanded="false" />
+                <element signature="e#6290#10728#0" expanded="false" />
+                <element signature="e#8214#9028#0" expanded="false" />
+                <element signature="e#11351#15166#0" expanded="false" />
+                <element signature="e#11460#11461#0" expanded="false" />
+                <element signature="e#16045#19347#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="namespace.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/namespace.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="service.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/service.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2021">
-              <caret line="206" column="0" lean-forward="false" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -81,16 +75,33 @@
       <file leaf-file-name="ingress.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/ingress.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2415">
-              <caret line="190" column="23" lean-forward="false" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
+            <state relative-caret-position="265">
+              <caret line="124" column="47" lean-forward="false" selection-start-line="124" selection-start-column="44" selection-end-line="124" selection-end-column="47" />
               <folding>
-                <element signature="e#3384#3391#1" expanded="true" />
-                <element signature="e#3525#3533#0" expanded="true" />
-                <element signature="e#4134#4197#0" expanded="false" />
-                <element signature="e#7585#7622#0" expanded="false" />
-                <element signature="e#7648#7686#0" expanded="false" />
-                <element signature="e#7805#8113#0" expanded="false" />
+                <element signature="e#7520#7557#0" expanded="false" />
+                <element signature="e#7583#7621#0" expanded="false" />
+                <element signature="e#7740#8048#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pod.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/pod.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mod_ing_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/mod_ing_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="628">
+              <caret line="51" column="35" lean-forward="false" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,48 +109,48 @@
       <file leaf-file-name="add_ing_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/add_ing_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+            <state relative-caret-position="120">
+              <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dp.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashborad/k8s/dp.py">
+      <file leaf-file-name="add_svc_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/add_svc_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="547">
+              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashborad/urls.py">
+      <file leaf-file-name="service.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/service.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="42" column="1" lean-forward="false" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+            <state relative-caret-position="498">
+              <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashborad/templates/public/layout.html">
+      <file leaf-file-name="mod_dp_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/mod_dp_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+            <state relative-caret-position="583">
+              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default_navbar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashborad/templates/public/default_navbar.html">
+      <file leaf-file-name="dpp.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/dpp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" column="24" lean-forward="false" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+            <state relative-caret-position="235">
+              <caret line="129" column="17" lean-forward="true" selection-start-line="129" selection-start-column="17" selection-end-line="129" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -157,17 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>group_value</find>
-      <find>delete</find>
-      <find>myForm</find>
-      <find>modal_id</find>
-      <find>title</find>
-      <find>content</find>
-      <find>inc</find>
-      <find>layero</find>
-      <find>aohao</find>
-      <find>增加产品类别</find>
-      <find>aihao</find>
       <find>ns</find>
       <find>demo1</find>
       <find>demo2</find>
@@ -176,17 +176,28 @@
       <find>add_dp</find>
       <find>add-server-btn</find>
       <find>create_svc</find>
-      <find>create_group</find>
       <find>incl</find>
       <find>sbt_svc</find>
       <find>print</find>
-      <find>modal_button_</find>
       <find>rel</find>
-      <find>modal_form</find>
       <find>modal_button</find>
       <find>add-ing-btn</find>
       <find>create_ing_btn</find>
       <find>name</find>
+      <find>create_group</find>
+      <find>LAY_demo_editor</find>
+      <find>title</find>
+      <find>content</find>
+      <find>modal_button_</find>
+      <find>modal_form</find>
+      <find>extensions_v1beta1</find>
+      <find>id</find>
+      <find>tags</find>
+      <find>namespace</find>
+      <find>chg</find>
+      <find>show</find>
+      <find>chg_ing</find>
+      <find>127</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,20 +220,25 @@
         <option value="$PROJECT_DIR$/dashborad/templates/public/server_list.html" />
         <option value="$PROJECT_DIR$/dashborad/templates/k8s/add_dp.html" />
         <option value="$PROJECT_DIR$/dashborad/k8s/test.py" />
-        <option value="$PROJECT_DIR$/dashborad/k8s/dp.py" />
         <option value="$PROJECT_DIR$/dashborad/templates/public/layout.html" />
-        <option value="$PROJECT_DIR$/dashborad/templates/k8s/dp.html" />
-        <option value="$PROJECT_DIR$/dashborad/templates/k8s/namespace.html" />
         <option value="$PROJECT_DIR$/dashborad/k8s/svc.py" />
-        <option value="$PROJECT_DIR$/dashborad/templates/k8s/add_svc_form.html" />
-        <option value="$PROJECT_DIR$/dashborad/templates/k8s/dpp.html" />
-        <option value="$PROJECT_DIR$/dashborad/k8s/repitl.py" />
         <option value="$PROJECT_DIR$/dashborad/templates/public/default_navbar.html" />
-        <option value="$PROJECT_DIR$/dashborad/templates/k8s/add_ing_form.html" />
         <option value="$PROJECT_DIR$/dashborad/urls.py" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/mod_dpp.html" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/mod_dp.html" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/1.html" />
+        <option value="$PROJECT_DIR$/dashborad/k8s/repitl.py" />
+        <option value="$PROJECT_DIR$/dashborad/k8s/dp.py" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/add_ing_form.html" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/mod_dp_form.html" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/namespace.html" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/add_svc_form.html" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/mod_ing_form.html" />
         <option value="$PROJECT_DIR$/dashborad/templates/k8s/ingress.html" />
-        <option value="$PROJECT_DIR$/dashborad/templates/k8s/service.html" />
         <option value="$PROJECT_DIR$/dashborad/k8s/__init__.py" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/dp.html" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/dpp.html" />
+        <option value="$PROJECT_DIR$/dashborad/templates/k8s/service.html" />
       </list>
     </option>
   </component>
@@ -234,7 +250,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="149" />
-    <option name="y" value="34" />
+    <option name="y" value="85" />
     <option name="width" value="1385" />
     <option name="height" value="942" />
   </component>
@@ -254,7 +270,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -262,66 +277,25 @@
               <item name="opswebb" type="b2602c69:ProjectViewProjectNode" />
               <item name="opswebb" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="opswebb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opswebb" type="462c0819:PsiDirectoryNode" />
-              <item name="dashborad" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="opswebb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opswebb" type="462c0819:PsiDirectoryNode" />
-              <item name="dashborad" type="462c0819:PsiDirectoryNode" />
-              <item name="k8s" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="opswebb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opswebb" type="462c0819:PsiDirectoryNode" />
-              <item name="dashborad" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="opswebb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opswebb" type="462c0819:PsiDirectoryNode" />
-              <item name="dashborad" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="k8s" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="opswebb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opswebb" type="462c0819:PsiDirectoryNode" />
-              <item name="dashborad" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="opswebb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opswebb" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="opswebb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opswebb" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="chosen" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/dashborad/templates/k8s" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/dashborad" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dashborad/templates/k8s" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -336,7 +310,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.repitl">
+  <component name="RunManager" selected="Python.test">
     <configuration name="userlist.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/opswebb/dashborad/templates/user/userlist.html" />
     <configuration name="pydevd" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -423,9 +397,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.repitl" />
-        <item index="1" class="java.lang.String" itemvalue="Python.svc" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.repitl" />
+        <item index="2" class="java.lang.String" itemvalue="Python.svc" />
         <item index="3" class="java.lang.String" itemvalue="Python.pydevd" />
         <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.userlist.html" />
       </list>
@@ -487,12 +461,25 @@
       <option name="project" value="LOCAL" />
       <updated>1517295282905</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add/del deployment.">
+      <created>1517296015677</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1517296015677</updated>
+    </task>
+    <task id="LOCAL-00008" summary=" k8s 部分基础功能完成">
+      <created>1517553436528</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1517553436528</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="149" y="34" width="1385" height="942" extended-state="0" />
-    <editor active="true" />
+    <frame x="149" y="85" width="1385" height="942" extended-state="0" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -500,7 +487,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21954022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2267148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2267148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -525,7 +512,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add k8s" />
     <MESSAGE value="add/del deployment." />
-    <option name="LAST_COMMIT_MESSAGE" value="add/del deployment." />
+    <MESSAGE value=" k8s 部分基础功能完成" />
+    <option name="LAST_COMMIT_MESSAGE" value=" k8s 部分基础功能完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -536,51 +524,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/dashborad/k8s/__init__.py</url>
-          <line>169</line>
-          <option name="timeStamp" value="11" />
+          <line>197</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dashborad/k8s/__init__.py</url>
+          <line>331</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dashborad/k8s/__init__.py</url>
+          <line>439</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="13" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dashborad/user/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="80" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/server_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashborad/server/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -624,20 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/pr.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/jump.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashborad/templates/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -677,13 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/pod.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -737,24 +678,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/user/wuser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2055">
-          <caret line="137" column="26" lean-forward="false" selection-start-line="137" selection-start-column="11" selection-end-line="137" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashborad/templates/user/userlist.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/server_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1710">
-          <caret line="114" column="14" lean-forward="false" selection-start-line="114" selection-start-column="14" selection-end-line="114" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -765,52 +692,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/k8s/con.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="37" lean-forward="false" selection-start-line="0" selection-start-column="37" selection-end-line="0" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashborad/k8s/svc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/k8s/repitl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="57" />
-          <folding>
-            <element signature="e#95#370#0" expanded="false" />
-            <element signature="e#388#2461#0" expanded="false" />
-            <element signature="e#2524#2762#0" expanded="false" />
-            <element signature="e#2903#3087#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/dpp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2355">
-          <caret line="157" column="30" lean-forward="false" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/add_svc_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/add_dp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -835,19 +720,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashborad/templates/public/default_navbar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="24" lean-forward="false" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -858,91 +734,213 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/dp.html">
+    <entry file="file://$PROJECT_DIR$/dashborad/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1965">
-          <caret line="150" column="10" lean-forward="false" selection-start-line="150" selection-start-column="10" selection-end-line="150" selection-end-column="10" />
+        <state relative-caret-position="570">
+          <caret line="42" column="1" lean-forward="false" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/mod_dp.html" />
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/add_dp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="40" />
           <folding>
-            <element signature="n#div#1;n#!!top" expanded="false" />
-            <element signature="e#7423#7951#0" expanded="false" />
+            <element signature="n#style#0;n#form#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/user/wuser.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="746">
+          <caret line="137" column="26" lean-forward="false" selection-start-line="137" selection-start-column="11" selection-end-line="137" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/server_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="114" column="14" lean-forward="false" selection-start-line="114" selection-start-column="14" selection-end-line="114" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/pr.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/public/jump.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/user/department.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/k8s/repitl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="e#95#370#0" expanded="false" />
+            <element signature="e#388#2461#0" expanded="false" />
+            <element signature="e#2524#2762#0" expanded="false" />
+            <element signature="e#2904#3088#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dashborad/k8s/dp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="765">
+          <caret line="55" column="64" lean-forward="false" selection-start-line="55" selection-start-column="64" selection-end-line="55" selection-end-column="64" />
+          <folding>
+            <element signature="e#1604#2426#0" expanded="false" />
+            <element signature="e#2907#3915#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/k8s/con.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="37" lean-forward="false" selection-start-line="0" selection-start-column="37" selection-end-line="0" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/namespace.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/add_svc_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/add_ing_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+        <state relative-caret-position="120">
+          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/urls.py">
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/mod_ing_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="42" column="1" lean-forward="false" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/ingress.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2415">
-          <caret line="190" column="23" lean-forward="false" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
-          <folding>
-            <element signature="e#3384#3391#1" expanded="true" />
-            <element signature="e#3525#3533#0" expanded="true" />
-            <element signature="e#4134#4197#0" expanded="false" />
-            <element signature="e#7585#7622#0" expanded="false" />
-            <element signature="e#7648#7686#0" expanded="false" />
-            <element signature="e#7805#8113#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/namespace.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/service.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2021">
-          <caret line="206" column="0" lean-forward="false" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
+        <state relative-caret-position="628">
+          <caret line="51" column="35" lean-forward="false" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dashborad/k8s/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="438" column="0" lean-forward="true" selection-start-line="438" selection-start-column="0" selection-end-line="438" selection-end-column="0" />
+        <state relative-caret-position="577">
+          <caret line="445" column="0" lean-forward="true" selection-start-line="445" selection-start-column="0" selection-end-line="445" selection-end-column="0" />
           <folding>
             <element signature="e#18#68#0" expanded="true" />
             <element signature="e#342#343#0" expanded="false" />
             <element signature="e#1521#1879#0" expanded="false" />
-            <element signature="e#1915#3063#0" expanded="false" />
-            <element signature="e#3099#3472#0" expanded="false" />
-            <element signature="e#3504#5416#0" expanded="false" />
-            <element signature="e#5447#8347#0" expanded="false" />
-            <element signature="e#8384#8937#0" expanded="false" />
-            <element signature="e#8970#12704#0" expanded="false" />
-            <element signature="e#9079#9080#0" expanded="false" />
-            <element signature="e#12168#12704#0" expanded="false" />
-            <element signature="e#12741#13550#0" expanded="false" />
-            <element signature="e#13583#15818#0" expanded="false" />
+            <element signature="e#1915#3140#0" expanded="false" />
+            <element signature="e#3268#4216#0" expanded="false" />
+            <element signature="e#4248#6219#0" expanded="false" />
+            <element signature="e#6290#10728#0" expanded="false" />
+            <element signature="e#8214#9028#0" expanded="false" />
+            <element signature="e#11351#15166#0" expanded="false" />
+            <element signature="e#11460#11461#0" expanded="false" />
+            <element signature="e#16045#19347#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/dp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="205" column="31" lean-forward="false" selection-start-line="205" selection-start-column="29" selection-end-line="205" selection-end-column="31" />
+          <folding>
+            <element signature="n#script#0;n#!!top" expanded="false" />
+            <element signature="e#9197#9895#0" expanded="false" />
+            <element signature="e#9976#10511#0" expanded="false" />
+            <element signature="e#10125#10498#0" expanded="false" />
+            <element signature="e#11978#12723#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/dpp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="129" column="17" lean-forward="true" selection-start-line="129" selection-start-column="17" selection-end-line="129" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/mod_dp_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/ingress.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="124" column="47" lean-forward="false" selection-start-line="124" selection-start-column="44" selection-end-line="124" selection-end-column="47" />
+          <folding>
+            <element signature="e#7520#7557#0" expanded="false" />
+            <element signature="e#7583#7621#0" expanded="false" />
+            <element signature="e#7740#8048#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/pod.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashborad/templates/k8s/service.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -42,6 +42,7 @@ def get_image_header():
 urls_project = 'http://hub.heshidai.com/api/projects'
 url_repo = 'http://hub.heshidai.com/api/repositories?project_id='
 
+
 def login():
     s = requests.Session()  # 可以在多次访问中保留cookie
     s.post('http://hub.heshidai.com/login', {'principal': 'admin', 'password': 'admin'}, headers=headers)  # POST帐号和密码，设置headers
@@ -81,7 +82,6 @@ def get_image_name(url='http://hub.heshidai.com/api/repositories?project_id=', p
 
 if __name__ == '__main__':
 
-    # get_tags('gold/hsdgold-console-pc')
-    get_project()
+    print(get_tags('gold/hsdgold-console-pc'))
 
 

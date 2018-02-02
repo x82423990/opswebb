@@ -88,10 +88,15 @@ class Nm_list(TemplateView):
                 # 生成namespace
                 v1.create_namespace(body=ns)
                 print(name)
-            except Exception as e:
-                ret['status'] = 1
-                ret['msg'] = e.args
-        return JsonResponse(ret, safe=True)
+            except ApiException as e:
+
+                tmp = eval(str(e.body))
+
+                ret['status'] = tmp.get('code')
+
+                ret['msg'] = tmp.get('message')
+
+            return JsonResponse(ret, safe=True)
 
 
 class Dp_list(TemplateView):
@@ -102,8 +107,27 @@ class Dp_list(TemplateView):
         config.load_kube_config()
         v1 = client.AppsV1beta2Api()
         context = super(Dp_list, self).get_context_data(**kwargs)
-        dp_list = v1.list_deployment_for_all_namespaces().items
-        print(type(dp_list))
+        dp_list = []
+        tmp = v1.list_deployment_for_all_namespaces().items
+
+        try:
+            for i in tmp:
+                ret = {}
+                ret['name'] = i.metadata.name
+                ret['ns'] = i.metadata.namespace
+                ret['replicas'] = i.status.replicas
+                ret['available_replicas'] = i.status.available_replicas
+                for j in i.spec.template.spec.containers:
+                    ret['image'] = j.image
+                    if not j.env:
+                        ret['env'] = 'no config'
+                    else:
+                        ret['env'] = j.env[0].value
+                dp_list.append(ret)
+        except Exception as e:
+            print e
+        # print(ret)
+        # print(dp_list)
         context['dp_list'] = dp_list
         return context
 
@@ -136,12 +160,15 @@ class SelectType(View):
     def post(self, request, types):
         if types == 'img':
             pj_id = request.POST.get('pid', None)
+            print(pj_id)
             a = repitl.get_image_name(project_id=pj_id)
             return JsonResponse(a, safe=False)
 
         if types == 'tags':
             repo_name = request.POST.get('image')
             tags = repitl.get_tags(repo_name)
+            print('tags:', tags)
+
             return JsonResponse(tags, safe=False)
 
         if types == 'dep':
@@ -171,58 +198,57 @@ class Add_Mod_Dp(View):
     def post(self, request, types):
         ret = {'status': 0}
         if types == 'add':
+            if not request.POST.get('ns', None):
+                ret['status'] = 404
+                ret['msg'] = 'ns不能为空'
+                return JsonResponse(ret, safe=True)
+            else:
+                ns = request.POST.get('ns')
+                print(type(ns))
+
+            if not request.POST.get('image', None):
+                ret['status'] = 404
+                ret['msg'] = 'Image不能为空'
+                return JsonResponse(ret, safe=True)
+            else:
+                msg = request.POST.get('image')
+
+            if not request.POST.get('tags'):
+                ret['status'] = 404
+                ret['msg'] = 'tags不能为空'
+                return JsonResponse(ret, safe=True)
+            else:
+                tags = request.POST.get('tags')
+
+            if not request.POST.get('rc', None):
+                ret['status'] = 1
+                ret['msg'] = 'Image不能为空'
+                return JsonResponse(ret, safe=True)
+            else:
+                rc = int(request.POST.get('rc'))
+            if not request.POST.get('env', None):
+                ret['status'] = 1
+                ret['msg'] = 'Image不能为空'
+                return JsonResponse(ret, safe=True)
+            else:
+                env = request.POST.get('env')
+            print(ns, msg, tags, rc, env)
+            config.load_kube_config()
+            extensions_v1beta1 = client.ExtensionsV1beta1Api()
             try:
-                if not request.POST.get('ns', None):
-                    ret['status'] = 404
-                    ret['msg'] = 'ns不能为空'
-                    return JsonResponse(ret, safe=True)
-                else:
-                    ns = request.POST.get('ns')
-                    print(type(ns))
-
-                if not request.POST.get('image', None):
-                    ret['status'] = 404
-                    ret['msg'] = 'Image不能为空'
-                    return JsonResponse(ret, safe=True)
-                else:
-                    msg = request.POST.get('image')
-
-                if not request.POST.get('tags'):
-                    ret['status'] = 404
-                    ret['msg'] = 'tags不能为空'
-                    return JsonResponse(ret, safe=True)
-                else:
-                    tags = request.POST.get('tags')
-
-                if not request.POST.get('rc', None):
-                    ret['status'] = 1
-                    ret['msg'] = 'Image不能为空'
-                    return JsonResponse(ret, safe=True)
-                else:
-                    rc = int(request.POST.get('rc'))
-                if not request.POST.get('env', None):
-                    ret['status'] = 1
-                    ret['msg'] = 'Image不能为空'
-                    return JsonResponse(ret, safe=True)
-                else:
-                    env = request.POST.get('env')
-                print(ns, msg, tags, rc, env)
-                config.load_kube_config()
-                extensions_v1beta1 = client.ExtensionsV1beta1Api()
                 deploy = dp.create_deployment_object(tags=tags, images=msg, rc=rc, envs=env)
                 dp.create_deployment(extensions_v1beta1, deploy, ns=ns)
-                ret['status'] = 0
                 ret['msg'] = '%s添加成功' % 'goo'
-                return JsonResponse(ret, safe=True)
-
-            except Exception as e:
-                ret['status'] = 1
-                ret['msg'] = e
-                return JsonResponse(ret, safe=True)
+            except ApiException as e:
+                tmp = eval(str(e.body))
+                ret['status'] = tmp.get('code')
+                ret['msg'] = tmp.get('message')
+            return JsonResponse(ret, safe=True)
 
         if types =='delete':
             ns = request.POST.get('ns_name').encode('utf-8')
             dp_name = request.POST.get('dp_name').encode('utf-8')
+            print(ns, dp_name)
             ret = {'status': 0}
             if dp_name is None:
                 ret['status'] = 100
@@ -239,6 +265,49 @@ class Add_Mod_Dp(View):
                     ret['status'] = 55
                     ret['msg'] = e
                 return JsonResponse(ret)
+
+        if types == 'update':
+            ret = {'status': 0}
+            dp_name = request.POST.get('dp_name')
+            env = request.POST.get('config')
+            img = request.POST.get('image')
+            ns = request.POST.get('ns')
+            tags = request.POST.get('pp')
+            rc = request.POST.get('rc')
+            # print(dp_name, env, img, tags, ns, rc)
+            ret['mgs'] = 'ok'
+            config.load_kube_config()
+            api = client.ExtensionsV1beta1Api()
+            try:
+                dp_obj = api.read_namespaced_deployment(name=dp_name, namespace=ns)
+                # get dep obj
+                deployment = client.ExtensionsV1beta1Deployment(
+                    api_version="extensions/v1beta1",
+                    kind="Deployment",
+                    metadata=client.V1ObjectMeta(name=dp_obj.metadata.name),
+                    spec=dp_obj.spec)
+                # get env
+                tmp = eval(str(deployment.spec.template.spec.containers[0].env[0]))
+                tmp['value'] = env
+                images = 'hub.heshidai.com/' + img + ':' + tags
+                deployment.spec.template.spec.containers[0].image = images
+                deployment.spec.replicas = int(rc)
+                deployment.spec.template.spec.containers[0].env[0] = tmp
+
+                api.patch_namespaced_deployment(
+                    name=dp_obj.metadata.name,
+                    namespace=ns,
+                    body=deployment)
+
+            except ApiException as e:
+
+                tmp = eval(str(e.body))
+
+                ret['status'] = tmp.get('code')
+
+                ret['msg'] = tmp.get('message')
+
+            return JsonResponse(ret, safe=True)
 
 
 class Svc_list(TemplateView):
@@ -340,10 +409,15 @@ class Add_Mod_svc(View):
                 service.spec = spec
                 api_instance.create_namespaced_service(namespace=ns, body=service)
                 ret['msg'] = "服务创建成功"
-            except Exception as e:
-                ret['status'] = 19
-                ret['msg'] = e
-                print(e)
+
+            except ApiException as e:
+
+                tmp = eval(str(e.body))
+
+                ret['status'] = tmp.get('code')
+
+                ret['msg'] = tmp.get('message')
+
             return JsonResponse(ret, safe=True)
 
         if types == 'del':
@@ -356,11 +430,11 @@ class Add_Mod_svc(View):
                 api_instance = client.CoreV1Api()
                 api_instance.delete_namespaced_service(name=svc_name, namespace=ns)
 
-            except Exception as e:
-                ret['status'] = 123
-                ret['msg'] = e
+            except ApiException as e:
+                tmp = eval(str(e.body))
+                ret['status'] = tmp.get('code')
+                ret['msg'] = tmp.get('message')
             return JsonResponse(ret, safe=True)
-            # return HttpResponse(svc_name)
 
 
 class Ing_list(TemplateView):
@@ -388,14 +462,15 @@ class Ing_Add_Mod(View):
     def post(self, request, types):
         if types == 'add':
             ret = {'status': 0}
-            ing_name = request.POST.get('ing_name').encode()
+            ing_name = request.POST.get('ing_name')
             ns = request.POST.get('ns').encode()
             svc_name = request.POST.get('label').encode()
             port = request.POST.get('port').encode()
-            host = request.POST.get('host', None).encode()
-            if host is None:
+            host = request.POST.get('host', None)
+            if not ing_name:
+                ing_name = svc_name
+            if not host:
                 host = ing_name+'.cd.maijinbei.cn'
-
             print(ing_name, ns, svc_name, port, host)
 
             config.load_kube_config()
@@ -415,9 +490,9 @@ class Ing_Add_Mod(View):
                 api.create_namespaced_ingress(ns, body)
 
             except ApiException as e:
-                print("Exception when calling ExtensionsV1beta1Api->create_namespaced_ingress: %s\n" % e)
-                ret['status'] = 12
-                ret['msg'] = e
+                tmp = eval(str(e.body))
+                ret['status'] = tmp.get('code')
+                ret['msg'] = tmp.get('message')
             return JsonResponse(ret, safe=True)
 
         if types == 'del':
@@ -436,6 +511,29 @@ class Ing_Add_Mod(View):
                 ret['msg'] = e
                 return JsonResponse(ret, safe=True)
             return JsonResponse(ret, safe=True)
+
+        if types == 'update':
+            ret = {'status': 0}
+            ing_name = request.POST.get('ing_name', None)
+            m_ns = request.POST.get('m_ns', None)
+            m_port = request.POST.get('m_port', None)
+            m_host = request.POST.get('m_host', None)
+            m_label = request.POST.get('m_label', None)
+            config.load_kube_config()
+            api = client.ExtensionsV1beta1Api()
+            try:
+                ing_obj = api.read_namespaced_ingress(ing_name, m_ns)
+                ing_obj.spec.rules[0].http.paths[0].backend.service_name = m_label
+                ing_obj.spec.rules[0].http.paths[0].backend.service_port = int(m_port)
+                ing_obj.spec.rules[0].host = m_host
+                api.patch_namespaced_ingress(ing_name, m_ns, ing_obj)
+                ret['msg'] = 'succeed'
+            except ApiException as e:
+                tmp = eval(str(e.body))
+                ret['status'] = tmp.get('code')
+                ret['msg'] = tmp.get('message')
+            return JsonResponse(ret, safe=True)
+
 
 
 

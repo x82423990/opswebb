@@ -34,7 +34,11 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/user/modp/?user={{ i.id }}">修改RC</a></li>
+                    <li role="presentation"><a role="menuitem"
+                                               tabindex="-1" href="#chg_ing" data-toggle="modal"
+                                               m_ns="{{ i.namespaces }}", m_svc_name="{{ i.svc_name }}", m_host="{{ i.host }}"
+                                               m_port="{{ i.svc_port }}" m_name="{{ i.name }}"
+                                               id="chg_ing_{{ i.name }}">修改Ing</a></li>
                        <li>
                          <a id="modal_button_{{ i.name }}" class="red" href="#modal_form"
                             data-toggle="modal" rel="{{ i.name }}" content="{{ i.namespaces }}"
@@ -90,29 +94,23 @@
 
 
 <!--修改DP 模态框-->
-<div class="modal fade" id="chg_rc" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<div class="modal fade" id="chg_ing" aria-hidden='true'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class='close' data-dismiss="modal">x</button>
+                <h4>Update Ingress</h4>
+                 {% include 'k8s/mod_ing_form.html' %}
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 
 
 
-
-<!--删除信息按钮，为每个删除按钮设置一个id，并将content和title传递给modal-->
 
 
 {% endblock %}
@@ -155,6 +153,7 @@
             //     })
             // })
         })
+
 
         // 删除 ing
         $("[href='#modal_form']").click(function(){
@@ -235,7 +234,8 @@
             }
         });
 
-        // 初始化
+        $('#add-ing-btn').click(function () {
+            console.log('click add')
               $.ajax({
               type: "GET",
               url: "/k8s/select/ns",
@@ -248,6 +248,9 @@
                   form.render();
               }
           })
+        })
+        // 初始化
+
 
 
         // 开始渲染svc
@@ -267,7 +270,7 @@
                     }
                 });
          }); // end渲染dep
-            //提交表单
+            //提交表单add
 
          form.on('submit(sbt_ing)', function(data){
             // )
@@ -290,6 +293,106 @@
         });
             return false;
           });
+
+
+
+
+        // update
+                $("[href='#chg_ing']").click(function() {
+            //定义modal_id，确保每个按钮所产生的id不一样，否则将会是最先遇到的那个
+            var chg_ing_id = "#" + $(this).attr('id');
+            var m_port = $(chg_ing_id).attr('m_port')
+            var m_svc_name = $(chg_ing_id).attr('m_svc_name')
+            var m_ns = $(chg_ing_id).attr('m_ns')
+            var tmp_host = $(chg_ing_id).attr('m_host')
+            var m_name = $(chg_ing_id).attr('m_name')
+            var m_host = String(tmp_host).split('.')[0]
+
+            console.log(chg_ing_id)
+            console.log(m_svc_name)
+            console.log(m_ns)
+            console.log(m_name)
+            console.log(m_port)
+            console.log(m_host)
+            $("#ing_name").val(m_name)
+            $("#m_label").append("<option value=" + m_svc_name + ">" + m_svc_name + "</option>")
+
+            // $("#m_label").next().children().find('input').val(m_svc_name)
+            $("#m_port").val(m_port)
+            $("#m_host").val(m_host)
+            // $("#m_ns").val(m_ns)
+            // $("#m_ns").next().children().find('input').val(m_ns)
+            $("#m_ns").append("<option value=" + m_ns + ">" + m_ns + "</option>")
+            form.render();
+
+
+
+
+        // 单机ns 选择
+
+        $("#m_ns").next().children().find('input').click(function () {
+            console.log('click add')
+              $.ajax({
+              type: "GET",
+              url: "/k8s/select/ns",
+              success: function (data) {
+                  $("#m_ns").empty()
+                  for (var i in data) {
+                      $("#m_ns").append("<option value=" + data[i] + ">" + data[i] + "</option>")
+                  }
+                  // $("#test").append('<option value="">test1</option>')
+                  form.render();
+              }
+          })
+        })
+
+
+        // 开始渲染svc
+        form.on('select(m_ns)', function(data){
+          console.log(data.value); //得到被选中的值
+                $.ajax({
+                    type:"POST",
+                    data: {"ns": data.value},
+                    url:"/k8s/select/svc",
+                    success:function(data) {
+                        $("#m_label").empty()
+                        // var nw = JSON.parse(data)
+                        for (var i in data) {
+                            $("#m_label").append("<option value="+data[i]+ ">"+data[i]+ "</option>")
+                        }
+                        form.render();
+                    }
+                });
+         }); // end渲染dep
+
+         // 调教修改表单
+        form.on('submit(sbt_ing_mod)', function(data){
+            // )
+              console.log(data.field)
+               $.post('/k8s/ing/update',data.field,function(res){
+                    if (res.status == 0 ){
+                        swal({
+                            'title': 'add success',
+                            'text': '',
+                            'type': 'success',
+                        },function () {
+                            setTimeout(function () {
+                                window.location.reload()
+                            },50);
+                        })
+                    }else{
+                        console.log(res.msg)
+                        swal('操作失败', res.msg, 'error')
+                    }
+        });
+            return false;
+          });
+
+        })
+
+
+
+
     });//end
 
 </script>

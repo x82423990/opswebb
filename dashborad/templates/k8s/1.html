@@ -3,12 +3,20 @@
       <div class="layui-inline">
         <label class="layui-form-label">Name</label>
         <div class="layui-input-inline">
-          <input type="text" name="ing_name"  autocomplete="off" placeholder="默认为Service name"class="layui-input">
+          <input type="text" name="svc_name"  autocomplete="off" placeholder="默认为镜像dp Name"class="layui-input">
         </div>
       </div>
     </div>
 
-
+    <div class="layui-form-item">
+      <label class="layui-form-label">Type</label>
+      <div class="layui-input-inline">
+        <select name="tags" lay-filter="types" lay-verify="required|string" id="svc_type">
+          <option value="1">内部负载</option>
+          <option value="2">外部负载</option>
+        </select>
+      </div>
+    </div>
 
     <div class="layui-form-item">
       <label class="layui-form-label">NameSpaces</label>
@@ -20,7 +28,7 @@
     </div>
 
     <div class="layui-form-item">
-      <label class="layui-form-label">关联服务</label>
+      <label class="layui-form-label">标签选择</label>
       <div class="layui-input-inline">
         <select name="label" lay-filter="label" lay-verify="required|string" id="label">
           <!--<option value="">test</option>-->
@@ -35,23 +43,22 @@
       <div class="layui-inline">
         <label class="layui-form-label">暴露端口</label>
         <div class="layui-input-inline">
-          <input type="text" name="port" lay-verify="required|number" autocomplete="off" placeholder="~" class="layui-input">
+          <input type="text" name="port" lay-verify="required|number" autocomplete="off" placeholder="~"class="layui-input">
         </div>
       </div>
     </div>
         <div class="layui-form-item">
       <div class="layui-inline">
-        <label class="layui-form-label">域名</label>
+        <label class="layui-form-label">目标端口</label>
         <div class="layui-input-inline">
-          <input type="text" name="host" lay-verify="string" placeholder="默认为name+.cd.maijinbei.cn" holder autocomplete="off" placeholder=""class="layui-input">
+          <input type="text" name="target" lay-verify="required|number" autocomplete="off" placeholder="容器端口"class="layui-input">
         </div>
       </div>
     </div>
 
-
       <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit="" lay-filter="sbt_ing">立即提交</button>
+      <button class="layui-btn" lay-submit="" lay-filter="sbt_svc">立即提交</button>
       <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
   </div>

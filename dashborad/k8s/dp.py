@@ -53,17 +53,26 @@ def create_deployment(api_instance, deployment, ns):
     return api_response.status
 
 
-def update_deployment(api_instance, deployment, images):
+def update_deployment(api_instance, images, tags, ns, rc, envs):
     # Update container image
+    #  = deployment = client.ExtensionsV1beta1Deployment()
+    deployment = client.ExtensionsV1beta1Deployment(
+        api_version="extensions/v1beta1",
+        kind="Deployment",
+        metadata=client.V1ObjectMeta(name='hsdgold-console-pc'))
     if '/' in images:
         name = images.split('/')[-1]
     else:
         name = images
-    deployment.spec.template.spec.containers[0].image = name
+    images ='hub.heshidai.com/'+images+':'+tags
+    print(images)
+    deployment.spec.template.spec.containers[0].image = images
+    deployment.spec.replicas = rc
+    deployment.spec.template.spec.containers[0].env[0]['value'] = envs
     # Update the deployment
     api_response = api_instance.patch_namespaced_deployment(
         name=name,
-        namespace="default",
+        namespace=ns,
         body=deployment)
     print("Deployment updated. status='%s'" % str(api_response.status))
 
@@ -96,13 +105,25 @@ def main():
     rc = int(u'1'.encode('utf-8'))
     env = u'test'.encode('utf-8')
 
-    deployment = create_deployment_object(tags=tags, images=msg, envs=env, rc=rc)
+    # deployment = create_deployment_object(tags=tags, images=msg, envs=env, rc=rc)
 
     # create_deployment(extensions_v1beta1, deployment, ns)
-    #
-    # update_deployment(extensions_v1beta1, deployment)
+    ns = u'bb'.encode('utf-8')
+    msg = u'base/nginx'.encode('utf-8')
+    tags = u'1.9.1'.encode('utf-8')
+    rc = int(u'1'.encode('utf-8'))
+    env = u'bbbbbb'.encode('utf-8')
+    dp = client.ExtensionsV1beta1Api()
+    a = dp.read_namespaced_deployment(name='2048', namespace='ba')
+    update_deployment(extensions_v1beta1, msg, tags, ns, rc, env)
+    deployment = client.ExtensionsV1beta1Deployment(
+        api_version="extensions/v1beta1",
+        kind="Deployment",
+        metadata=client.V1ObjectMeta(name=name),
+        spec=spec)
 
-    delete_deployment(extensions_v1beta1, ns=ns, images=msg)
+    # delete_deployment(extensions_v1beta1, ns=ns, images=msg)
+
 
 if __name__ == '__main__':
     main()

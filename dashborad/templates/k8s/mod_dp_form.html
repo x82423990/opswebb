@@ -1,0 +1,86 @@
+<form class="layui-form layui-form-pane layui-elem-field layui-field-title " action="" id="change_dp_form" lay-fleter="create_dp_form">
+
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">Name</label>
+        <div class="layui-input-inline">
+          <input type="text" id="dp_name" name="dp_name"  disabled="disabled" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+    </div>
+
+    <!--ns-->
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">Namespace</label>
+        <div class="layui-input-inline">
+          <input type="text" id="ns" name="ns"  disabled="disabled" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">Project</label>
+      <div class="layui-input-inline">
+        <select name="pjt" lay-filter="pjt" lay-verify="required|string" id="pjt">
+          <!--<option value="">test</option>-->
+        </select>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">images</label>
+      <div class="layui-input-inline">
+        <select name="image" lay-filter="image" lay-verify="required|string" id="image" disabled="disabled">
+          <!--<option value="">test</option>-->
+        </select>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">tags</label>
+      <div class="layui-input-inline">
+        <select name="pp" lay-filter="pp" lay-verify="required|string" id="pp">
+          <option value="">testetestete</option>
+        </select>
+      </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">RC</label>
+        <div class="layui-input-inline">
+          <input type="text" name="rc" lay-verify="required|number" autocomplete="off" id="rc" class="layui-input">
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">Config</label>
+        <div class="layui-input-inline">
+          <input type="text" name="config" autocomplete="off" id="config" class="layui-input">
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="sub-chg-btn">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
