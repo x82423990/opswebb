@@ -14,7 +14,7 @@ logger = logging.getLogger('opsweb')
 class Log_In_Out(View):
 
     def get(self, request):
-        return render(request, 'login.html', {'title': 'rebbot 晕为'})
+        return render(request, 'login.html', {'title': 'ops'})
 
     def post(self, request):
             username = request.POST.get('username', None)

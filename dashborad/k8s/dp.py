@@ -1,18 +1,19 @@
 # encoding: utf-8
 from os import path
 
-import yaml
+import yaml, string, random
 
 from kubernetes import client, config
 
 
-def create_deployment_object(images, tags, rc, envs):
+def create_deployment_object(images, tags, rc, envs, name):
 
     # 拼装参数
-    if '/' in images:
-        name = images.split('/')[-1]
-    else:
-        name = images
+    # if name is None:
+    #     if '/' in images:
+    #         name = images.split('/')[-1]
+    #     else:
+    #         name = images
 
     image = images+':'+tags
 

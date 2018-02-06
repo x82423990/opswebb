@@ -8,7 +8,6 @@ urlpatterns = [
     url(r'^login/', views.Log_In_Out.as_view()),
     url(r'^logout/', views.LogOut.as_view()),
     url(r'^$', views.IndexView.as_view()),
-    # url(r'^user/userlist/', user.UserListView.as_view()),
     url(r'^user/userlist/', user.LW.as_view()),
     url(r'^user/modify/', user.Modify_status.as_view()),
     url(r'^user/modp/', user.ModifyDepartmentView.as_view()),
@@ -21,7 +20,6 @@ urlpatterns = [
         url(r'^$', group.GroupView.as_view()),
         url(r'^usergroup/', group.UserGroup.as_view()),
         url(r'^per/', group.PermissionList.as_view()),
-
     ])),
     url(r'^server/', include([
         url(r'^list/$', server.GroupList.as_view()),
@@ -38,6 +36,7 @@ urlpatterns = [
         url(r'^svc/(?P<types>.*)$', k8s.Add_Mod_svc.as_view(), name='add_svc'),
         url(r'^ingress/$', k8s.Ing_list.as_view(), name='list_ing'),
         url(r'^ing/(?P<types>.*)$', k8s.Ing_Add_Mod.as_view(), name='m_c_ing'),
+        url(r'^test/$', k8s.pr_test.as_view()),
 
     ]))
 ]

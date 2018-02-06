@@ -4,9 +4,13 @@ from django.template import RequestContext, loader
 from django.views.generic import TemplateView, View, ListView
 from con import con
 from kubernetes import client, config
-import repitl, dp
+import repitl, dp, string, random
 from django.shortcuts import render
 from kubernetes.client.rest import ApiException
+from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
+
+
 #
 # class PodList(TemplateView):
 #
@@ -68,9 +72,12 @@ class Nm_list(TemplateView):
 
         context = super(Nm_list, self).get_context_data(**kwargs)
         context['nm_list'] = nm_list
-        # context['nm_list'] = [1, 2, 3]
-
         return context
+
+    @method_decorator(login_required)
+    def get(self, requsete, *args, **kwargs):
+        self.request = requsete
+        return super(Nm_list, self).get(self, *args, **kwargs)
 
     def post(self, request):
         ret = {'status': 0}
@@ -102,7 +109,6 @@ class Nm_list(TemplateView):
 class Dp_list(TemplateView):
     # 模板渲染
     template_name = 'k8s/dp.html'
-
     def get_context_data(self, **kwargs):
         config.load_kube_config()
         v1 = client.AppsV1beta2Api()
@@ -126,11 +132,13 @@ class Dp_list(TemplateView):
                 dp_list.append(ret)
         except Exception as e:
             print e
-        # print(ret)
-        # print(dp_list)
         context['dp_list'] = dp_list
         return context
 
+    @method_decorator(login_required)
+    def get(self, requsete, *args, **kwargs):
+        self.request = requsete
+        return super(Dp_list, self).get(self, *args, **kwargs)
 
 class SelectType(View):
 
@@ -195,9 +203,14 @@ class SelectType(View):
 
 
 class Add_Mod_Dp(View):
+
+    @method_decorator(login_required)
     def post(self, request, types):
+        if not request.user.is_authenticated():
+            return render(request, 'login.html')
         ret = {'status': 0}
         if types == 'add':
+            salt = '-'+''.join(random.sample(string.ascii_lowercase, 4))
             if not request.POST.get('ns', None):
                 ret['status'] = 404
                 ret['msg'] = 'ns不能为空'
@@ -212,7 +225,10 @@ class Add_Mod_Dp(View):
                 return JsonResponse(ret, safe=True)
             else:
                 msg = request.POST.get('image')
-
+            if not request.POST.get('dp_name', None):
+                dp_name = msg.split('/')[-1] + salt
+            else:
+                dp_name = request.POST.get('dp_name', None) + salt
             if not request.POST.get('tags'):
                 ret['status'] = 404
                 ret['msg'] = 'tags不能为空'
@@ -222,7 +238,7 @@ class Add_Mod_Dp(View):
 
             if not request.POST.get('rc', None):
                 ret['status'] = 1
-                ret['msg'] = 'Image不能为空'
+                ret['msg'] = 'RC不能为空'
                 return JsonResponse(ret, safe=True)
             else:
                 rc = int(request.POST.get('rc'))
@@ -236,9 +252,8 @@ class Add_Mod_Dp(View):
             config.load_kube_config()
             extensions_v1beta1 = client.ExtensionsV1beta1Api()
             try:
-                deploy = dp.create_deployment_object(tags=tags, images=msg, rc=rc, envs=env)
+                deploy = dp.create_deployment_object(tags=tags, images=msg, rc=rc, envs=env, name=dp_name)
                 dp.create_deployment(extensions_v1beta1, deploy, ns=ns)
-                ret['msg'] = '%s添加成功' % 'goo'
             except ApiException as e:
                 tmp = eval(str(e.body))
                 ret['status'] = tmp.get('code')
@@ -328,10 +343,16 @@ class Svc_list(TemplateView):
         context['svc_list'] = svc_list
         return context
 
+    @method_decorator(login_required)
+    def get(self, requsete, *args, **kwargs):
+        self.request = requsete
+        return super(Svc_list, self).get(self, *args, **kwargs)
+
 
 class Add_Mod_svc(View):
-
     def post(self, request, types):
+        if not request.user.is_authenticated():
+            return render(request, 'login.html')
         if types == 'add':
 
             ret = {'status': 0}
@@ -456,6 +477,11 @@ class Ing_list(TemplateView):
         context['ing_list'] = ret
         return context
 
+    @method_decorator(login_required)
+    def get(self, requsete, *args, **kwargs):
+        self.request = requsete
+        return super(Ing_list, self).get(self, *args, **kwargs)
+
 
 class Ing_Add_Mod(View):
 
@@ -535,32 +561,10 @@ class Ing_Add_Mod(View):
             return JsonResponse(ret, safe=True)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class pr_test(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        return render(request, "public/index.html")
 
 
 
