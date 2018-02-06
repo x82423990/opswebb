@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12cdc0bf-7649-4eda-89dc-18efaf1e1f77" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/dashborad/templates/icons.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/main.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dashborad/k8s/__init__.py" afterPath="$PROJECT_DIR$/dashborad/k8s/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/dashborad/k8s/dp.py" afterPath="$PROJECT_DIR$/dashborad/k8s/dp.py" />
-      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/dpp.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/dpp.html" />
-      <change beforePath="$PROJECT_DIR$/dashborad/templates/k8s/ingress.html" afterPath="$PROJECT_DIR$/dashborad/templates/k8s/ingress.html" />
-      <change beforePath="$PROJECT_DIR$/dashborad/templates/public/index.html" afterPath="$PROJECT_DIR$/dashborad/templates/public/index.html" />
-      <change beforePath="$PROJECT_DIR$/dashborad/urls.py" afterPath="$PROJECT_DIR$/dashborad/urls.py" />
-      <change beforePath="$PROJECT_DIR$/dashborad/views.py" afterPath="$PROJECT_DIR$/dashborad/views.py" />
-      <change beforePath="$PROJECT_DIR$/logs/dj.log" afterPath="$PROJECT_DIR$/logs/dj.log" />
-      <change beforePath="$PROJECT_DIR$/opsweb/settings.py" afterPath="$PROJECT_DIR$/opsweb/settings.py" />
+      <change beforePath="$PROJECT_DIR$/static/js/main.js" afterPath="$PROJECT_DIR$/static/js/main.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -104,8 +94,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+            <state relative-caret-position="419">
+              <caret line="97" column="1" lean-forward="true" selection-start-line="97" selection-start-column="1" selection-end-line="97" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -525,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1517553556683</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="k8s基础功能完成">
+      <created>1517906754167</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1517906754167</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -997,8 +994,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        <state relative-caret-position="419">
+          <caret line="97" column="1" lean-forward="true" selection-start-line="97" selection-start-column="1" selection-end-line="97" selection-end-column="1" />
           <folding />
         </state>
       </provider>

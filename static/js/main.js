@@ -95,4 +95,4 @@ layui.use(['form','element','layer','jquery'],function(){
         $(".outIcons span").text(data.split(".icon-").length-1);
     })
 
-})
+}
